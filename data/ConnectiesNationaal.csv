@@ -1,0 +1,90 @@
+station1,station2,distance
+Alkmaar,Hoorn,24.0
+Alkmaar,Den Helder,36.0
+Almelo,Hengelo,10.0
+Almere Centrum,Lelystad Centrum,14.0
+Amsterdam Amstel,Almere Centrum,27.0
+Amsterdam Amstel,Amsterdam Centraal,8.0
+Amsterdam Amstel,Amsterdam Zuid,10.0
+Amsterdam Amstel,Hilversum,28.0
+Amsterdam Centraal,Almere Centrum,20.0
+Amsterdam Centraal,Amsterdam Sloterdijk,6.0
+Amsterdam Sloterdijk,Haarlem,11.0
+Amsterdam Sloterdijk,Zaandam,6.0
+Amsterdam Zuid,Schiphol Airport,6.0
+Amsterdam Zuid,Amsterdam Sloterdijk,16.0
+Apeldoorn,Amersfoort,24.0
+Apeldoorn,Zutphen,20.0
+Arnhem Centraal,Ede-Wageningen,10.0
+Arnhem Centraal,Dieren,12.0
+Assen,Zwolle,40.0
+Beverwijk,Castricum,13.0
+Breda,Etten-Leur,7.0
+Breda,Dordrecht,18.0
+Castricum,Alkmaar,9.0
+Delft,Den Haag Laan v NOI,12.0
+Delft,Den Haag Centraal,13.0
+Delft,Den Haag HS,8.0
+Den Haag Centraal,Gouda,18.0
+Den Haag Centraal,Leiden Centraal,12.0
+Den Haag HS,Gouda,21.0
+Den Haag HS,Leiden Centraal,12.0
+Den Haag Laan v NOI,Leiden Centraal,9.0
+Den Haag Laan v NOI,Gouda,28.0
+Deventer,Apeldoorn,10.0
+Deventer,Almelo,24.0
+Deventer,Zutphen,12.0
+Dordrecht,Rotterdam Centraal,17.0
+Dordrecht,Rotterdam Blaak,14.0
+Eindhoven,Helmond,9.0
+Eindhoven,s-Hertogenbosch,18.0
+Eindhoven,Tilburg,21.0
+Etten-Leur,Roosendaal,11.0
+Gouda,Alphen a/d Rijn,19.0
+Groningen,Assen,17.0
+Haarlem,Beverwijk,16.0
+Heemstede-Aerdenhout,Haarlem,6.0
+Heerenveen,Steenwijk,14.0
+Helmond,Venlo,30.0
+Hengelo,Enschede,7.0
+Hilversum,Almere Centrum,26.0
+Leeuwarden,Heerenveen,16.0
+Leeuwarden,Groningen,35.0
+Leiden Centraal,Schiphol Airport,15.0
+Leiden Centraal,Alphen a/d Rijn,14.0
+Leiden Centraal,Heemstede-Aerdenhout,13.0
+Maastricht,Sittard,15.0
+Nijmegen,Arnhem Centraal,12.0
+Oss,Nijmegen,16.0
+Roermond,Weert,14.0
+Roosendaal,Vlissingen,63.0
+Roosendaal,Dordrecht,22.0
+Rotterdam Alexander,Gouda,10.0
+Rotterdam Blaak,Rotterdam Alexander,9.0
+Rotterdam Blaak,Schiedam Centrum,11.0
+Rotterdam Centraal,Rotterdam Alexander,8.0
+Rotterdam Centraal,Schiedam Centrum,5.0
+Schiedam Centrum,Delft,7.0
+Sittard,Heerlen,15.0
+Sittard,Roermond,15.0
+Steenwijk,Zwolle,24.0
+Tilburg,Breda,13.0
+Utrecht Centraal,Amsterdam Centraal,27.0
+Utrecht Centraal,Amsterdam Amstel,19.0
+Utrecht Centraal,Hilversum,15.0
+Utrecht Centraal,Ede-Wageningen,24.0
+Utrecht Centraal,Amersfoort,14.0
+Utrecht Centraal,Gouda,18.0
+Utrecht Centraal,Alphen a/d Rijn,28.0
+Utrecht Centraal,Schiphol Airport,33.0
+Utrecht Centraal,s-Hertogenbosch,27.0
+Weert,Eindhoven,17.0
+Zaandam,Hoorn,26.0
+Zaandam,Castricum,12.0
+Zaandam,Beverwijk,25.0
+Zutphen,Dieren,8.0
+Zwolle,Amersfoort,35.0
+Zwolle,Deventer,24.0
+Zwolle,Almelo,42.0
+s-Hertogenbosch,Oss,11.0
+s-Hertogenbosch,Tilburg,15.0

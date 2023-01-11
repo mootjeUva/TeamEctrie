@@ -1,0 +1,29 @@
+station1,station2,distance
+Alkmaar,Hoorn,24
+Alkmaar,Den Helder,36
+Amsterdam Amstel,Amsterdam Zuid,10
+Amsterdam Amstel,Amsterdam Centraal,8
+Amsterdam Centraal,Amsterdam Sloterdijk,6
+Amsterdam Sloterdijk,Haarlem,11
+Amsterdam Sloterdijk,Zaandam,6
+Amsterdam Zuid,Amsterdam Sloterdijk,16
+Amsterdam Zuid,Schiphol Airport,6
+Beverwijk,Castricum,13
+Castricum,Alkmaar,9
+Delft,Den Haag Centraal,13
+Den Haag Centraal,Gouda,18
+Den Haag Centraal,Leiden Centraal,12
+Dordrecht,Rotterdam Centraal,17
+Gouda,Alphen a/d Rijn,19
+Haarlem,Beverwijk,16
+Heemstede-Aerdenhout,Haarlem,6
+Leiden Centraal,Heemstede-Aerdenhout,13
+Leiden Centraal,Alphen a/d Rijn,14
+Leiden Centraal,Schiphol Airport,15
+Rotterdam Alexander,Gouda,10
+Rotterdam Centraal,Schiedam Centrum,5
+Rotterdam Centraal,Rotterdam Alexander,8
+Schiedam Centrum,Delft,7
+Zaandam,Castricum,12
+Zaandam,Beverwijk,25
+Zaandam,Hoorn,26
