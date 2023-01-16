@@ -32,7 +32,7 @@ class Graph():
         Load all connections into the graph
         """
         # Create a connections dict where every key is station1 and value is a list of station 2 and the distance to it
-        connections: dict[str, list[str, int]] = {}
+        connections: dict[str, dict[str, int]] = {}
 
         with open(source_file, 'r') as file:
             reader = csv.DictReader(file)
@@ -43,17 +43,24 @@ class Graph():
                 connection = Connection(row['station1'], row['station2'], row['distance'])
                 # Add connection to specific station
                 self.stations[connection.station1].add_connection(connection.station2, connection.distance)
-                # Add connection to connections dict
-                connections[connection.station1] = [connection.station2, connection.distance]
+                # Add connection in connections dict both ways: station 1 to 2 and vice versa
+                if connection.station1 not in connections.keys():
+                    connections[connection.station1] = {connection.station2 : connection.distance}
+                else:
+                    connections[connection.station1].update({connection.station2 : connection.distance})
+                if connection.station2 not in connections.keys():
+                    connections[connection.station2] = {connection.station1 : connection.distance}
+                else:
+                    connections[connection.station2].update({connection.station1 : connection.distance})
 
         return connections
 
 #__________Code to test if the the graph is working correctly___________
 
-# def main():
-#     graph = Graph('../data/StationsHolland.csv', '../data/ConnectiesHolland.csv')
-#     print(graph.connections)
+def main():
+     graph = Graph('../data/StationsHolland.csv', '../data/ConnectiesHolland.csv')
+     print(graph.connections)
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+     main()
