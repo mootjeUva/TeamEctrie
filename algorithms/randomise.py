@@ -1,5 +1,5 @@
 import random
-import copy
+import copy 
 from traject import Traject
 
 def random_algorithm(graph, traject):
