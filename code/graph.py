@@ -58,7 +58,7 @@ class Graph():
 #__________Code to test if the the graph is working correctly___________
 
 def main():
-     graph = Graph('../data/StationsHolland.csv', '../data/ConnectiesHolland.csv')
+     graph = Graph('data/StationsHolland.csv', 'data/ConnectiesHolland.csv')
      print(graph.connections)
 
 
