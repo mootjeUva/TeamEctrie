@@ -14,6 +14,10 @@ class Station():
 
         self.connections[station] = distance
 
+    def get_connection(self) -> Dict[str, int]:
+
+        return self.connections
+
     def __repr__(self) -> str:
 
         return self.name
