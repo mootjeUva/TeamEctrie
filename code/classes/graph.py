@@ -1,6 +1,6 @@
 import csv
-from classes.verbinding import Connection
-from classes.station import Station
+from .verbinding import Connection
+from .station import Station
 from typing import Dict
 
 
@@ -69,11 +69,12 @@ class Graph():
 
 # __________Code to test if the the graph is working correctly___________
 
-def main() -> None:
+# def main() -> None:
 
-    graph = Graph('data/StationsHolland.csv', 'data/ConnectiesHolland.csv')
-    print(graph.connections)
+#     graph = Graph('../data/StationsHolland.csv',
+#                   '../data/ConnectiesHolland.csv')
+#     print(graph.connections)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#    main()

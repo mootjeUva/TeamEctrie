@@ -1,6 +1,6 @@
 import random
-from classes.traject import Traject
-from classes.graph import Graph
+from code.classes.traject import Traject
+from code.classes.graph import Graph
 
 
 def random_algorithm(graph: Graph, traject: Traject) -> None:
@@ -11,6 +11,8 @@ def random_algorithm(graph: Graph, traject: Traject) -> None:
     connections = graph.connections[start_station]
 
     while True:
+        if traject.total_distance > 120:
+            break
         next_station = random.choice(list(connections.keys()))
         distance = connections[next_station]
         traject.add_station(next_station, distance)

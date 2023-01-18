@@ -12,3 +12,6 @@ class Traject():
 
         self.stations[station] = distance
         self.total_distance += distance
+
+    def __str__(self) -> str:
+        return f'{[station for station in self.stations]}'
