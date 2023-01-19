@@ -10,7 +10,11 @@ class Station():
         self.x = x
         self.y = y
         self.connections: Dict[str, int] = {}
+<<<<<<< HEAD
+        self.is_visited = False
+=======
         self.connections_list: List[Connection] = []
+>>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
 
     def add_connection(self, station: str, distance: int) -> None:
 

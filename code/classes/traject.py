@@ -22,3 +22,9 @@ class Traject():
     def __str__(self) -> str:
 
         return f'{[station for station in self.stations]}'
+    
+    def check_timeframe(self, distance):
+        if self.total_distance + distance < 120:
+            return True
+        else:
+            return False

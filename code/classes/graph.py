@@ -72,16 +72,21 @@ class Graph():
                         {connection.station1: connection.distance})
 
         return connections
+    
+    def not_visited_yet(self, station):
+        """
+        This method returns a station from connections list if it is not visited yet, 
+        if all stations in connections are visited function returns False
+        """
+        for option in self.connections[station].keys():
+            if self.stations[option].is_visited == False:
+                return option
+        return False
+    
+    def distance_between_stations(self, station1, station2):
+        """
+        This method returns the distance between two stations
+        """
+        distance = self.connections[station1][station2]
 
-
-# __________Code to test if the the graph is working correctly___________
-
-# def main() -> None:
-
-#     graph = Graph('../data/StationsHolland.csv',
-#                   '../data/ConnectiesHolland.csv')
-#     print(graph.connections)
-
-
-# if __name__ == "__main__":
-#    main()
+        return distance
