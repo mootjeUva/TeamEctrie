@@ -1,6 +1,7 @@
 import random
 from code.classes.traject import Traject
 from code.classes.graph import Graph
+from code.classes.lines import Lines
 
 def random_traject(graph):
     """
@@ -13,13 +14,6 @@ def random_traject(graph):
     traject.add_station(current_station, 0)
     # Set first station's is visited to true
     graph.stations[current_station].is_visited = True
-
-def random_algorithm(graph: Graph, traject: Traject) -> None:
-
-    # Select random starting station
-    start_station = random.choice(list(graph.connections.keys()))
-    traject.add_station(start_station, 0)
-    connections = graph.connections[start_station]
 
     while True:
         # Choose next station which is not visited yet
