@@ -1,6 +1,7 @@
 from code.classes.graph import Graph
 from code.classes.traject import Traject
 from code.classes.station import Station
+from code.classes.lines import Lines
 from code.classes.verbinding import Connection
 from code.classes.lines import Lines
 from code.algorithms import randomise, greedy
@@ -11,7 +12,11 @@ import seaborn as sns
 
 if __name__ == "__main__":
 
-    graph = Graph('data/StationsHolland.csv',
+    lineslist = []
+    scoreslist = []
+
+    for i in range(1):
+        graph = Graph('data/StationsHolland.csv',
                   'data/ConnectiesHolland.csv')
 
     score_list = []

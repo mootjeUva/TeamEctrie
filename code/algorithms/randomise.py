@@ -1,4 +1,9 @@
 import random
+<<<<<<< HEAD
+from code.classes.traject import Traject
+from code.classes.graph import Graph
+from code.classes.lines import Lines
+=======
 from code.classes.graph import Graph
 from code.classes.traject import Traject
 
@@ -12,6 +17,7 @@ def not_visited_yet(graph: Graph, connections):
         if graph.stations[station].is_visited is False:
             return station
     return False
+>>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
 
 
 def random_traject(graph: Graph) -> Traject:
@@ -26,20 +32,30 @@ def random_traject(graph: Graph) -> Traject:
 
     # Set first station's is visited to true
     graph.stations[current_station].is_visited = True
+<<<<<<< HEAD
+=======
 
     # Determine connections of first station
     current_station_connections = graph.connections[current_station]
+>>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
 
-    # Infinite loop to add randomly stations to traject
     while True:
         # Choose next station which is not visited yet
+<<<<<<< HEAD
+        next_station = graph.not_visited_yet(current_station)
+=======
         next_station = not_visited_yet(graph, current_station_connections)
 
+>>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
         # Check if next_station is visited or not
         if next_station is not False:
             # Compute distance to next_station
+<<<<<<< HEAD
+            distance = graph.distance_between_stations(current_station, next_station)
+=======
             distance = current_station_connections[next_station]
 
+>>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
             # Check if possible within timeframe
             if traject.check_timeframe(distance) is False:
                 break
@@ -49,11 +65,17 @@ def random_traject(graph: Graph) -> Traject:
             graph.stations[next_station].is_visited = True
             traject.add_station(next_station, distance)
             current_station = next_station
-            current_station_connections = graph.connections[current_station]
         else:
             break
     return traject
 
+<<<<<<< HEAD
+def random_algorithm(graph):
+    """
+    This method creates at most 7 trajects and returns the score of the goalfunction
+    """
+    lines = Lines()
+=======
 
 def random_algorithm(graph: Graph) -> float:
     """ This method creates at most 7 trajects,
@@ -61,13 +83,19 @@ def random_algorithm(graph: Graph) -> float:
 
     traject_dict = {}
     i = 1
+>>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
 
-    # Randomly create a traject and add it to the traject_dict
-    while len(traject_dict.keys()) < 7:
+    # Randomly create (at most 7) trajects till length of the traject can't be greater than 1
+    for i in range(7):
         traject = Traject()
         traject = random_traject(graph)
         if len(traject.stations) == 1:
             break
+<<<<<<< HEAD
+        lines.add_traject(traject)
+    
+    return lines
+=======
         traject_dict[f'traject{i}'] = [len(traject.stations),
                                        traject.total_distance]
         i += 1
@@ -93,3 +121,4 @@ def random_algorithm(graph: Graph) -> float:
 
     print(K)
     return K
+>>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
