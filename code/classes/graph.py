@@ -1,7 +1,7 @@
 import csv
 from .verbinding import Connection
 from .station import Station
-from typing import Dict
+from typing import Dict, List
 
 
 class Graph():
@@ -9,7 +9,7 @@ class Graph():
     def __init__(self, station_file: str, connection_file: str) -> None:
 
         self.stations = self.load_stations(station_file)
-        self.all_connections = []
+        self.all_connections: List[Connection] = []
         self.connections = self.load_connections(connection_file)
 
     def load_stations(self, source_file: str) -> Dict[str, Station]:

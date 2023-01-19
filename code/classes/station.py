@@ -17,7 +17,7 @@ class Station():
         self.connections[station] = distance
         self.connections_list.append(Connection(self.name, station, distance))
 
-    def get_connection(self) -> list:
+    def get_connection(self) -> List[Connection]:
 
         return self.connections_list
 

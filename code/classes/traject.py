@@ -1,5 +1,5 @@
 from .verbinding import Connection
-from typing import Dict
+from typing import Dict, List
 
 
 class Traject():
@@ -8,7 +8,7 @@ class Traject():
 
         self.stations: Dict[str, int] = {}
         self.total_distance = 0
-        self.ridden_connections = []
+        self.ridden_connections: List[Connection] = []
 
     def add_station(self, station: str, distance: int) -> None:
 

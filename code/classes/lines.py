@@ -1,14 +1,16 @@
 from .traject import Traject
 from .graph import Graph
+from .verbinding import Connection
+from typing import List, Any
 
 
 class Lines():
 
     def __init__(self) -> None:
 
-        self.lines = []
+        self.lines: List[Any] = []
         self.distances = 0
-        self.connections = []
+        self.connections: List[Connection] = []
 
     def add_traject(self, traject: Traject) -> None:
 

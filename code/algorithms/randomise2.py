@@ -2,9 +2,10 @@ import random
 from code.classes.traject import Traject
 from code.classes.graph import Graph
 from code.classes.verbinding import Connection
+from typing import Dict, Any
 
 
-def copy_dict(dictionary: dict, avoid_value) -> dict:
+def copy_dict(dictionary: Dict[Any, Any], avoid_value: str) -> Dict[Any, Any]:
     new_dict = {}
     dict_keys = dictionary.keys()
     for keys in dict_keys:
