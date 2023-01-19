@@ -1,4 +1,5 @@
 from .traject import Traject
+from .graph import Graph
 
 
 class Lines():
@@ -6,7 +7,8 @@ class Lines():
     def __init__(self) -> None:
 
         self.lines = []
-        self.distances = []
+        self.distances = 0
+        self.connections = []
 
     def add_traject(self, traject: Traject) -> None:
 
@@ -14,13 +16,18 @@ class Lines():
 
         if train_list not in self.lines:
             self.lines.append(train_list)
-            self.distances.append(traject.total_distance)
+            self.distances += traject.total_distance
+        for con in traject.ridden_connections:
+            if con not in self.connections:
+                self.connections.append(con)
 
-    def score(self) -> float:
+        self.connections = list(dict.fromkeys(self.connections))
 
+    def score(self, graph: Graph) -> float:
+
+        p = float(len(self.connections)/len(graph.all_connections))
         T = len(self.lines)
-        Min = sum(self.distances)
-        p = 1
+        Min = self.distances
         K = p*10000 - (T*100 + Min)
 
         return K
