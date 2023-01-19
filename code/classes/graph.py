@@ -1,7 +1,7 @@
 import csv
 from .verbinding import Connection
 from .station import Station
-from typing import Dict
+from typing import Dict, List
 
 
 class Graph():
@@ -9,6 +9,7 @@ class Graph():
     def __init__(self, station_file: str, connection_file: str) -> None:
 
         self.stations = self.load_stations(station_file)
+        self.all_connections: List[Connection] = []
         self.connections = self.load_connections(connection_file)
 
     def load_stations(self, source_file: str) -> Dict[str, Station]:
@@ -45,6 +46,12 @@ class Graph():
                 connection = Connection(row['station1'],
                                         row['station2'],
                                         int(row['distance']))
+                connection2 = Connection(row['station2'],
+                                         row['station1'],
+                                         int(row['distance']))
+
+                self.all_connections.append(connection)
+                self.all_connections.append(connection2)
                 # Add connection to specific station
                 self.stations[connection.station1].add_connection(
                                                     connection.station2,

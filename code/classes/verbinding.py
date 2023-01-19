@@ -5,3 +5,7 @@ class Connection():
         self.station1 = station1
         self.station2 = station2
         self.distance = distance
+
+    def __repr__(self) -> str:
+
+        return f"{self.station1}, {self.station2}, {self.distance}"
