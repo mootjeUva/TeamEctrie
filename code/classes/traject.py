@@ -8,7 +8,7 @@ class Traject():
 
         self.stations: Dict[str, int] = {}
         self.total_distance = 0
-        self.ridden_connections: List[Connection] = []
+        self.ridden_connections: List[list[str, str]] = []
 
     def add_station(self, station: str, distance: int) -> None:
 

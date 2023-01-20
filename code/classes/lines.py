@@ -23,7 +23,7 @@ class Lines():
             if con not in self.connections:
                 self.connections.append(con)
 
-        self.connections = list(dict.fromkeys(self.connections))
+        # self.connections = list(dict.fromkeys(self.connections))
 
     def score(self, graph: Graph) -> float:
 
@@ -33,5 +33,7 @@ class Lines():
         T = len(self.lines)
         Min = self.distances
         K = p*10000 - (T*100 + Min)
-
+        
+        print(f"p = {p}")
+        print(f"n connections = {len(self.connections)}, total conections = {len(graph.all_connections)}")
         return K

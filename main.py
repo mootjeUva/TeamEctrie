@@ -11,7 +11,7 @@ if __name__ == "__main__":
                   'data/ConnectiesHolland.csv')
 
     score_list = []
-    for j in range(100000):
+    for j in range(10000):
         line = Lines()
         for i in range(7):
             if len(line.lines) >= 7 or \
@@ -21,8 +21,7 @@ if __name__ == "__main__":
                 traject = Traject()
                 random_algorithm(graph, traject)
                 line.add_traject(traject)
-        score = line.score(graph)
-        score_list.append(score)
+        score_list.append(line.score(graph))
 
     average_score = round(sum(score_list)/len(score_list))
     minn = sorted(score_list, reverse=False)[0]

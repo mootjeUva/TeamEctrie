@@ -45,10 +45,11 @@ def random_algorithm(graph: Graph, traject: Traject) -> None:
             break
 
         # Add connections and station to the trajrect
-        con = Connection(tmp, next_station, distance)
-        con2 = Connection(next_station, tmp, distance)
-        traject.add_connection(con)
-        traject.add_connection(con2)
+        con_object = Connection(tmp, next_station, distance)
+        con_stations = [con_object.station1, con_object.station2]
+        # con2 = Connection(next_station, tmp, distance)
+        traject.add_connection(con_stations)
+        # traject.add_connection(con2)
         traject.add_station(next_station, distance)
         connections = graph.connections[next_station]
         connections = copy_dict(connections, tmp)

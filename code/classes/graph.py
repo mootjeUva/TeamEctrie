@@ -52,6 +52,7 @@ class Graph():
 
                 self.all_connections.append(connection)
                 self.all_connections.append(connection2)
+                
                 # Add connection to specific station
                 self.stations[connection.station1].add_connection(
                                                     connection.station2,
