@@ -31,24 +31,7 @@ class Lines():
         if p >= 1:
             p = 1
         T = len(self.lines)
-<<<<<<< HEAD
-        Min = sum(self.distances)
-        p = self.compute_p()
-=======
         Min = self.distances
->>>>>>> 59fa8a75d3301a5402c8e608d1c7454a810d7602
         K = p*10000 - (T*100 + Min)
 
         return K
-    
-    def compute_p(self):
-        total_stations = 0
-
-        # Count how many stations in total are reached in self.lines
-        for i in range(len(self.lines)):
-            total_stations += len(self.lines[i])
-
-        # connections / total connections
-        p = round((total_stations - 1) / 28)
-
-        return p

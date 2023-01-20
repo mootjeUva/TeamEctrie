@@ -11,5 +11,5 @@ class Greedy():
         self.graph = deepcopy(graph)
         self.traject = traject
 
-    def get_next_station(self, stations: Station) -> str:
+    def get_next_station(self, stations: Station) -> None:
         pass

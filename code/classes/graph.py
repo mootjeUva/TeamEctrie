@@ -1,7 +1,7 @@
 import csv
 from .verbinding import Connection
 from .station import Station
-from typing import Dict, List
+from typing import Dict, List, Any
 
 
 class Graph():
@@ -72,21 +72,21 @@ class Graph():
                         {connection.station1: connection.distance})
 
         return connections
-    
-    def not_visited_yet(self, station):
-        """
-        This method returns a station from connections list if it is not visited yet, 
-        if all stations in connections are visited function returns False
-        """
+
+    def not_visited_yet(self, station: str) -> Any:
+        """ This method returns a station from connections list if it is not
+            visited yet, if all stations in connections are visited function
+            returns False. """
+
         for option in self.connections[station].keys():
-            if self.stations[option].is_visited == False:
+            if self.stations[option].is_visited is False:
                 return option
+
         return False
-    
-    def distance_between_stations(self, station1, station2):
-        """
-        This method returns the distance between two stations
-        """
+
+    def distance_between_stations(self, station1: str, station2: str) -> int:
+        """ This method returns the distance between two stations. """
+
         distance = self.connections[station1][station2]
 
         return distance
