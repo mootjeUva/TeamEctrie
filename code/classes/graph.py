@@ -46,13 +46,8 @@ class Graph():
                 connection = Connection(row['station1'],
                                         row['station2'],
                                         int(row['distance']))
-                connection2 = Connection(row['station2'],
-                                         row['station1'],
-                                         int(row['distance']))
-
-                self.all_connections.append(connection)
-                self.all_connections.append(connection2)
                 
+                self.all_connections.append(connection.connection_set)
                 # Add connection to specific station
                 self.stations[connection.station1].add_connection(
                                                     connection.station2,
@@ -74,20 +69,18 @@ class Graph():
 
         return connections
 
-    def not_visited_yet(self, station: str) -> Any:
-        """ This method returns a station from connections list if it is not
-            visited yet, if all stations in connections are visited function
-            returns False. """
+    def not_visited_yet(self) -> Any:
+        """ This method returns an unvisited station from the graph if possible, else returns false """
 
-        for option in self.connections[station].keys():
-            if self.stations[option].is_visited is False:
-                return option
+        for station in self.connections.keys():
+            if self.stations[station].is_visited == False:
+                return station
 
         return False
 
-    def distance_between_stations(self, station1: str, station2: str) -> int:
-        """ This method returns the distance between two stations. """
+    # def distance_between_stations(self, station1: str, station2: str) -> int:
+    #     """ This method returns the distance between two stations. """
 
-        distance = self.connections[station1][station2]
+    #     distance = self.connections[station1][station2]
 
-        return distance
+    #     return distance
