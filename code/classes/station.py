@@ -22,6 +22,22 @@ class Station():
 
         return self.connections_list
     
+    def highest_potential(self, graph):
+        """
+        This method returns a visited connection which has by itself unvisited connections, else returns false
+        """
+        # Loops over all visited connections of self
+        for visited in self.connections.keys():
+            # Loops over all connections of the visited connections
+            for potential in graph.stations[visited].connections.keys():
+                # Check if there is any connection which isn't visited yet
+                if graph.stations[potential].is_visited == False:
+                    # Return the (already visited) station which has by itself an unvisited connection
+                    return visited
+        else:
+            return False
+
+    
     def get_nearest_unvisited_connection(self, graph):
         """
         Method returns nearest unvisited connection of a station

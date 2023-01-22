@@ -13,17 +13,24 @@ if __name__ == "__main__":
                   'data/ConnectiesHolland.csv')
 
     #-------------------------Random Algorithm-------------------------
+    best_randomscore = 0
+    best_randomline = []
     random_score_list = []
     for j in range(10000):
         line = Lines()
-        for i in range(7):
-            if len(line.lines) >= 7 or \
-                   len(line.connections) >= len(graph.all_connections):
+        for i in range(20):
+            if len(line.lines) >= 7: # or \
+                #    len(line.connections) >= len(graph.all_connections) or \
+                #         (len(line.connections) / len(graph.all_connections)) >= 0.6:
                 break
             else:
                 traject = Traject()
                 random_algorithm(graph, traject)
                 line.add_traject(traject)
+        if line.score(graph) > best_randomscore:
+            best_randomscore = line.score(graph)
+            best_randomline = line.lines
+
         random_score_list.append(line.score(graph))
 
     random_average_score = round(sum(random_score_list)/len(random_score_list))
@@ -35,22 +42,27 @@ if __name__ == "__main__":
     print(f"Random (Min, Max) = ({random_minn}, {random_maxx})")
 
     #---------------------------RandomGreedy Algorithm---------------------------
+    best_greedy_score = 0
+    best_greedy_line = []
     greedy_score_list = []
     
     for i in range(10000):
         graph = Graph('data/StationsHolland.csv',
                   'data/ConnectiesHolland.csv')
         line = Lines()
-        for j in range(7):
+        for j in range(20):
             if len(line.lines) >= 7 or \
                    len(line.connections) >= len(graph.all_connections):
                 break
             traject = Traject()
-            gr = RandomGreedy(graph, traject)
+            gr = RandomGreedy(graph, traject, 120)
             gr.run()
             if len(traject.stations.keys()) <= 1:
                 continue
             line.add_traject(traject)
+        if line.score(graph) > best_greedy_score:
+            best_greedy_score = line.score(graph)
+            best_greedy_line = line.lines
         greedy_score_list.append(line.score(graph))
 
     greedy_average_score = round(sum(greedy_score_list)/len(greedy_score_list))
@@ -60,3 +72,4 @@ if __name__ == "__main__":
     print(f"Greedy average_score = {greedy_average_score}")
     print(f"Greedy standard_deviation = {greedy_sd}")
     print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
+    print(best_greedy_line)

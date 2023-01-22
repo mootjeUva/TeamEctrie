@@ -45,7 +45,7 @@ class Graph():
                 # Create connection
                 connection = Connection(row['station1'],
                                         row['station2'],
-                                        int(row['distance']))
+                                        float(row['distance']))
                 
                 self.all_connections.append(connection.connection_set)
                 # Add connection to specific station
@@ -78,9 +78,9 @@ class Graph():
 
         return False
 
-    # def distance_between_stations(self, station1: str, station2: str) -> int:
-    #     """ This method returns the distance between two stations. """
+    def distance_between_stations(self, station1: str, station2: str) -> int:
+        """ This method returns the distance between two stations. """
 
-    #     distance = self.connections[station1][station2]
+        distance = self.connections[station1][station2]
 
-    #     return distance
+        return distance
