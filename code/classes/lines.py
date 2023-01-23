@@ -14,7 +14,7 @@ class Lines():
 
     def add_traject(self, traject: Traject) -> None:
 
-        train_list = list(traject.stations.keys())
+        train_list = traject.stations
 
         if train_list not in self.lines:
             self.lines.append(train_list)

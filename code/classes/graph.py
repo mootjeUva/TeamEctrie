@@ -48,10 +48,11 @@ class Graph():
                                         float(row['distance']))
                 
                 self.all_connections.append(connection.connection_set)
-                # Add connection to specific station
+                # Add connection to specific station in both ways
                 self.stations[connection.station1].add_connection(
                                                     connection.station2,
                                                     connection.distance)
+                self.stations[connection.station2].add_connection(connection.station1, connection.distance)
                 # Add connection in connections dict both ways:
                 # station 1 to station 2 and vice versa
                 if connection.station1 not in connections.keys():
@@ -69,9 +70,15 @@ class Graph():
 
         return connections
 
-    def not_visited_yet(self) -> Any:
-        """ This method returns an unvisited station from the graph if possible, else returns false """
+    def not_visited_yet(self, endpoint_stations: list) -> Any:
+        """ This method returns an if possible an unvisited endpoint station, else an unvisited station"""
+       
+        # Check if there is any unvisited endpoint station in the graph
+        for station in endpoint_stations:
+            if self.stations[station].is_visited == False:
+                return station
 
+        # If no unvisited endpoint station, return a random unvisited station
         for station in self.connections.keys():
             if self.stations[station].is_visited == False:
                 return station
@@ -84,3 +91,15 @@ class Graph():
         distance = self.connections[station1][station2]
 
         return distance
+    
+    def endpoint_stations(self):
+        """
+        This method returns a list of all stations with only one connection (endpoint stations).
+        """
+        endpoint_stations = []
+
+        for station in self.stations.values():
+            if len(self.connections[station.name].values()) == 1:
+                endpoint_stations.append(station.name)
+
+        return endpoint_stations

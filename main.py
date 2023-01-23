@@ -1,7 +1,7 @@
 from code.classes.graph import Graph
 from code.classes.traject import Traject
 from code.classes.lines import Lines
-from code.algorithms.randomise import random_algorithm
+from code.algorithms.randomise import Randomise
 import numpy as np
 from code.algorithms.greedy import RandomGreedy
 
@@ -9,29 +9,22 @@ from code.algorithms.greedy import RandomGreedy
 if __name__ == "__main__":
 
     # Create graph and empty traject
-    graph = Graph('data/StationsHolland.csv',
-                  'data/ConnectiesHolland.csv')
+    graph = Graph('data/StationsNationaal.csv',
+                  'data/ConnectiesNationaal.csv')
 
     #-------------------------Random Algorithm-------------------------
     best_randomscore = 0
     best_randomline = []
     random_score_list = []
-    for j in range(10000):
-        line = Lines()
-        for i in range(20):
-            if len(line.lines) >= 7: # or \
-                #    len(line.connections) >= len(graph.all_connections) or \
-                #         (len(line.connections) / len(graph.all_connections)) >= 0.6:
-                break
-            else:
-                traject = Traject()
-                random_algorithm(graph, traject)
-                line.add_traject(traject)
-        if line.score(graph) > best_randomscore:
-            best_randomscore = line.score(graph)
-            best_randomline = line.lines
 
-        random_score_list.append(line.score(graph))
+    for j in range(10000):
+        rd = Randomise(graph, 180, 20)
+        rd.run()
+        if rd.line.score(graph) > best_randomscore:
+            best_randomscore = rd.line.score(graph)
+            best_randomline = rd.line.lines
+
+        random_score_list.append(rd.line.score(graph))
 
     random_average_score = round(sum(random_score_list)/len(random_score_list))
     random_minn = sorted(random_score_list, reverse=False)[0]
@@ -47,23 +40,14 @@ if __name__ == "__main__":
     greedy_score_list = []
     
     for i in range(10000):
-        graph = Graph('data/StationsHolland.csv',
-                  'data/ConnectiesHolland.csv')
-        line = Lines()
-        for j in range(20):
-            if len(line.lines) >= 7 or \
-                   len(line.connections) >= len(graph.all_connections):
-                break
-            traject = Traject()
-            gr = RandomGreedy(graph, traject, 120)
-            gr.run()
-            if len(traject.stations.keys()) <= 1:
-                continue
-            line.add_traject(traject)
-        if line.score(graph) > best_greedy_score:
-            best_greedy_score = line.score(graph)
-            best_greedy_line = line.lines
-        greedy_score_list.append(line.score(graph))
+        graph = Graph('data/StationsNationaal.csv',
+                  'data/ConnectiesNationaal.csv')
+        gr = RandomGreedy(graph, 180, 20)
+        gr.run()
+        if gr.line.score(graph) > best_greedy_score:
+            best_greedy_score = gr.line.score(graph)
+            best_greedy_line = gr.line.lines
+        greedy_score_list.append(gr.line.score(graph))
 
     greedy_average_score = round(sum(greedy_score_list)/len(greedy_score_list))
     greedy_minn = sorted(greedy_score_list, reverse=False)[0]
@@ -72,4 +56,4 @@ if __name__ == "__main__":
     print(f"Greedy average_score = {greedy_average_score}")
     print(f"Greedy standard_deviation = {greedy_sd}")
     print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
-    print(best_greedy_line)
+    # print(best_greedy_line)
