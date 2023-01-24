@@ -10,6 +10,7 @@ class Visualization():
 
     def __init__(self, graph: Graph) -> None:
 
+        self.i = 0
         x = []
         y = []
         for name in graph.stations:
@@ -29,6 +30,7 @@ class Visualization():
 
     def add_traject(self, line: Traject, graph: Graph) -> None:
 
+        self.i += 1
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)
@@ -39,9 +41,9 @@ class Visualization():
         for i in range(len(x) - 1):
             station1 = x[i]
             station2 = x[i+1]
-            point1 = [station1.y, station1.x]
-            point2 = [station2.y, station2.x]
-            PolyLine([point1, point2], color=color).add_to(self.map)
+            points = [[station1.y, station1.x], [station2.y, station2.x]]
+            PolyLine(points, color=color,
+                     popup='train_{}'.format(self.i)).add_to(self.map)
 
     def save_output(self, name: str) -> None:
 
