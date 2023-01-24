@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Any
 from .verbinding import Connection
 
 
@@ -21,43 +21,44 @@ class Station():
     def get_connection(self) -> List[Connection]:
 
         return self.connections_list
-    
-    def highest_potential(self, graph):
-        """
-        This method returns a visited connection which has by itself unvisited connections, else returns false
-        """
+
+    def highest_potential(self, graph: Any) -> Any:
+        """ This method returns a visited connection which has by itself
+            unvisited connections, else returns false. """
+
         # Loops over all visited connections of self
         for visited in self.connections.keys():
             # Loops over all connections of the visited connections
             for potential in graph.stations[visited].connections.keys():
                 # Check if there is any connection which isn't visited yet
-                if graph.stations[potential].is_visited == False:
-                    # Return the (already visited) station which has by itself an unvisited connection
+                if graph.stations[potential].is_visited is False:
+                    # Return the (already visited) station which has by itself
+                    # an unvisited connection
                     return visited
         else:
             return False
 
-    
-    def get_nearest_unvisited_connection(self, graph):
-        """
-        Method returns nearest unvisited connection of a station
-        """
-        # Create empty unvisited dict
-        unvisited_connections_dict = {}
+    def get_nearest_unvisited_connection(self, graph: Any) -> Any:
+        """ Method returns nearest unvisited connection of a station. """
 
-        # Add all unvisited connected stations to dict with corresponding distance as value
+        # Create empty unvisited dict
+        unvisited_connections_dict: Dict[str, int] = {}
+
+        # Add all unvisited connected stations to dict with corresponding
+        # distance as value
         for key in self.connections.keys():
-            if graph.stations[key].is_visited == False:
+            if graph.stations[key].is_visited is False:
                 unvisited_connections_dict[key] = self.connections[key]
 
         # Check if dict is empty
         if not unvisited_connections_dict:
             return False
-        
+
         else:
             # Find connection with shortest distance
-            nearest_connection = min(unvisited_connections_dict, key=unvisited_connections_dict.get)
-            return nearest_connection, unvisited_connections_dict[nearest_connection]
+            nearest_con = min(unvisited_connections_dict,
+                              key=unvisited_connections_dict.get)
+            return nearest_con, unvisited_connections_dict[nearest_con]
 
     def __repr__(self) -> str:
         return self.name

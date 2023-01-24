@@ -1,9 +1,9 @@
+# type: ignore
 from code.classes.graph import Graph
-from code.classes.traject import Traject
-from code.classes.lines import Lines
 from code.algorithms.randomise import Randomise
 import numpy as np
 from code.algorithms.greedy import RandomGreedy
+from code.visualisation.visualise import Visualization
 
 
 if __name__ == "__main__":
@@ -12,12 +12,12 @@ if __name__ == "__main__":
     graph = Graph('data/StationsNationaal.csv',
                   'data/ConnectiesNationaal.csv')
 
-    #-------------------------Random Algorithm-------------------------
+    # -------------------------Random Algorithm-------------------------
     best_randomscore = 0
     best_randomline = []
     random_score_list = []
 
-    for j in range(10000):
+    for j in range(1000):
         rd = Randomise(graph, 180, 20)
         rd.run()
         if rd.line.score(graph) > best_randomscore:
@@ -34,14 +34,20 @@ if __name__ == "__main__":
     print(f"Random standard_deviation = {random_standard_deviation}")
     print(f"Random (Min, Max) = ({random_minn}, {random_maxx})")
 
-    #---------------------------RandomGreedy Algorithm---------------------------
+    vis = Visualization(graph)
+    vis.add_stations(graph)
+    for line in best_randomline:
+        vis.add_traject(line, graph)
+    vis.save_output('best_random')
+
+    # ---------------------------RandomGreedy Algorithm-----------------------
     best_greedy_score = 0
     best_greedy_line = []
     greedy_score_list = []
-    
-    for i in range(10000):
+
+    for i in range(1000):
         graph = Graph('data/StationsNationaal.csv',
-                  'data/ConnectiesNationaal.csv')
+                      'data/ConnectiesNationaal.csv')
         gr = RandomGreedy(graph, 180, 20)
         gr.run()
         if gr.line.score(graph) > best_greedy_score:
@@ -56,4 +62,9 @@ if __name__ == "__main__":
     print(f"Greedy average_score = {greedy_average_score}")
     print(f"Greedy standard_deviation = {greedy_sd}")
     print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
-    # print(best_greedy_line)
+
+    vis2 = Visualization(graph)
+    vis2.add_stations(graph)
+    for line in best_greedy_line:
+        vis2.add_traject(line, graph)
+    vis2.save_output('best_greedy')
