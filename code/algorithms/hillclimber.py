@@ -6,6 +6,7 @@ from code.classes.verbinding import Connection
 from code.classes.lines import Lines
 
 
+
 class HillClimber():
     """
     The HillClimber class that changes a random node in the graph to a random valid value. Each improvement or
