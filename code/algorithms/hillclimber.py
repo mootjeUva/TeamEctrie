@@ -4,7 +4,7 @@ from code.classes.graph import Graph
 from code.classes.traject import Traject
 from code.classes.verbinding import Connection
 from code.classes.lines import Lines
-import random
+
 
 class HillClimber():
     """
