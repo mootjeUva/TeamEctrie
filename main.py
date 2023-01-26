@@ -17,7 +17,7 @@ if __name__ == "__main__":
     best_randomline = []
     random_score_list = []
 
-    for j in range(1000):
+    for j in range(10):
         rd = Randomise(graph, 180, 20)
         rd.run()
         if rd.line.score(graph) > best_randomscore:
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     best_greedy_line = []
     greedy_score_list = []
 
-    for i in range(1000):
+    for i in range(10000):
         graph = Graph('data/StationsNationaal.csv',
                       'data/ConnectiesNationaal.csv')
         gr = RandomGreedy(graph, 180, 20)
@@ -63,8 +63,8 @@ if __name__ == "__main__":
     print(f"Greedy standard_deviation = {greedy_sd}")
     print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
 
-    vis2 = Visualization(graph)
-    vis2.add_stations(graph)
+    vis = Visualization(graph)
+    vis.add_stations(graph)
     for line in best_greedy_line:
-        vis2.add_traject(line, graph)
-    vis2.save_output('best_greedy')
+        vis.add_traject(line, graph)
+    vis.save_output('best_greedy')
