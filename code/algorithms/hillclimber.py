@@ -21,7 +21,10 @@ class HillClimber:
     
     def run(self,iterations):
         for i in range(iterations):
+            print(i)
             next_traject = self.generate_random_traject()
+            print("next")
+            print(next_traject.line.lines)
             current_state_copy = copy.deepcopy(self.current_state)
             self.remove_lowest_scoring_traject()
             self.current_state.line.lines.append(next_traject.line)
@@ -30,6 +33,10 @@ class HillClimber:
                 self.best_state = self.current_state
             else:
                 self.current_state = current_state_copy
+            print("current")
+            print(self.current_state.line.lines)
+            print("best")
+            print(self.best_state.line.lines)
         
     
     def generate_random_traject(self):

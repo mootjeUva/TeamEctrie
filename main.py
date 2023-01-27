@@ -79,9 +79,10 @@ if __name__ == "__main__":
     gr = RandomGreedy(graph, 180, 20)
     gr.run()
     hillclimb = HillClimber(graph,180, gr)
-    hillclimb.run(10000)    
+    hillclimb.run(3)    
     print(gr.line.score(graph))
     print(hillclimb.best_state.line.score(graph))  
+    
     
     # best_hillclimber_score = 0
     # best_hillclimber_line = []
