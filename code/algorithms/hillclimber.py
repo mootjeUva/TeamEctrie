@@ -2,65 +2,55 @@ import copy
 from code.algorithms.greedy import RandomGreedy
 from code.classes.graph import Graph
 from code.classes.traject import Traject
+from code.classes.verbinding import Connection
 from code.classes.lines import Lines
-from typing import Any
+import random
+from code.algorithms.randomise import Randomise
 
+class HillClimber:
+    """
+    The HillClimber class that changes a random node in the graph to a random valid value. Each improvement or
+    equivalent solution is kept for the next iteration.
+    """
 
-class HillClimber():
-    """ The HillClimber class that changes a random node in the graph to a
-        random valid value. Each improvement or equivalent solution is kept
-        for the next iteration. """
-
-    def __init__(self, graph: Graph, best_line: Lines, timeframe: int) -> None:
-
+    def __init__(self, graph, timeframe, max_trajects):
         self.graph = graph
-        self.new_graph = copy.deepcopy(graph)
         self.timeframe = timeframe
-        self.best_line = best_line
-        self.old_score = best_line.score(self.graph)
+        self.max_trajects = max_trajects
+        self.current_state = RandomGreedy(self.graph, self.timeframe, self.max_trajects)
+        self.best_state = self.current_state
+    
+    def run(self,iterations):
+        for i in range(iterations):
+            next_traject = self.generate_random_traject()
+            current_state_copy = copy.deepcopy(self.current_state)
+            self.remove_lowest_scoring_traject()
+            self.current_state.line.add_traject(next_traject.line)
 
-    def remove_lowest_scoring_traject(self) -> Traject:
+            if self.current_state.line.score(self.graph) > self.best_state.line.score(self.graph):
+                self.best_state = self.current_state
+            else:
+                self.current_state = current_state_copy
+        
+    
+    def generate_random_traject(self):
+        
+        # Generate a single random traject
+        random_traject = Randomise(self.graph, self.timeframe, 1)
+        return random_traject
+    
+    def remove_lowest_scoring_traject(self):
+        # create an empty list
+        score = []
+        # remove every traject one at a time and calculate the score
+        for traject in self.current_state.line.lines.copy():
+            self.current_state.line.lines.remove(traject)
+            score.append(self.current_state.line.score(self.graph))
+            self.current_state.line.lines.append(traject)
+        
+        # remove the lowest scoring traject
+        lowest_score_index = score.index(min(score))
+        self.current_state.line.lines.remove(self.current_state.line.lines[lowest_score_index])
 
-        for i in range(len(self.best_line.lines)):
-            K_list = []
-            K_list.append(self.K_traject(self.best_line.lines[i]))
 
-        minn_index = K_list.index(min(K_list))
-        lowest_scoring_traject = K_list.pop(minn_index)
-        return lowest_scoring_traject
 
-    def create_randomgreedy_traject(self) -> Traject:
-
-        traject = Traject()
-        for s in range(len(RandomGreedy(self.new_graph, self.timeframe, 1))):
-            pass
-
-        return traject
-
-    def compare_s(self, traject_old: Traject, traject_new: Traject) -> bool:
-
-        if self.K_traject(traject_new) > self.K_traject(traject_old):
-            return True
-        return False
-
-    def K_traject(self, traject: Traject) -> Any:
-        """" Calculate K for one traject with T = 1. """
-
-        p = len(traject.ridden_connections) / len(self.graph.all_connections)
-        K = p * 1000 - traject.total_distance
-
-        return K
-
-    def run(self) -> Lines:
-        """ Run method of hillclimber. """
-
-        removed_traject = self.remove_lowest_scoring_traject()
-        new_traject = self.create_randomgreedy_traject()
-
-        if self.compare_s(removed_traject, new_traject) is True:
-            self.best_line.add_traject(new_traject)
-            self.graph = self.new_graph
-        else:
-            self.best_line.add_traject(removed_traject)
-
-        return self.best_line
