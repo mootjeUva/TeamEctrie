@@ -13,8 +13,9 @@ class HillClimber:
     equivalent solution is kept for the next iteration.
     """
 
-    def __init__(self, graph, current_state: RandomGreedy ):
+    def __init__(self, graph, timeframe, current_state: RandomGreedy ):
         self.graph = graph
+        self.timeframe = timeframe
         self.current_state = current_state
         self.best_state = self.current_state
     
@@ -23,7 +24,7 @@ class HillClimber:
             next_traject = self.generate_random_traject()
             current_state_copy = copy.deepcopy(self.current_state)
             self.remove_lowest_scoring_traject()
-            self.current_state.line.add_traject(next_traject.line)
+            self.current_state.line.lines.append(next_traject.line)
 
             if self.current_state.line.score(self.graph) > self.best_state.line.score(self.graph):
                 self.best_state = self.current_state
@@ -32,9 +33,9 @@ class HillClimber:
         
     
     def generate_random_traject(self):
-        
         # Generate a single random traject
         random_traject = Randomise(self.graph, self.timeframe, 1)
+        random_traject.run()
         return random_traject
     
     def remove_lowest_scoring_traject(self):

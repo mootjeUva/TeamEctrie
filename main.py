@@ -75,10 +75,13 @@ if __name__ == "__main__":
 
     graph = Graph('data/StationsNationaal.csv',
                 'data/ConnectiesNationaal.csv')
-    hillclimb = HillClimber(graph,180,20)    
-    print(graph.stations)
-    print(hillclimb.best_state.line.lines)  
-    print(hillclimb.current_state.line.lines)   
+    
+    gr = RandomGreedy(graph, 180, 20)
+    gr.run()
+    hillclimb = HillClimber(graph,180, gr)
+    hillclimb.run(10000)    
+    print(gr.line.score(graph))
+    print(hillclimb.best_state.line.score(graph))  
     
     # best_hillclimber_score = 0
     # best_hillclimber_line = []
