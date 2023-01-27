@@ -13,11 +13,9 @@ class HillClimber:
     equivalent solution is kept for the next iteration.
     """
 
-    def __init__(self, graph, timeframe, max_trajects):
+    def __init__(self, graph, current_state: RandomGreedy ):
         self.graph = graph
-        self.timeframe = timeframe
-        self.max_trajects = max_trajects
-        self.current_state = RandomGreedy(self.graph, self.timeframe, self.max_trajects)
+        self.current_state = current_state
         self.best_state = self.current_state
     
     def run(self,iterations):
