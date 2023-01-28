@@ -43,13 +43,13 @@ class RandomGreedy():
                 # Find the station as an object
                 station_object = self.graph.stations[current_station]
 
-                # Check if there is an unvisited connection
-                if station_object.get_nearest_unvisited_connection(
+                # Check if there is an unvisited station
+                if station_object.get_nearest_unvisited_station(
                                                                 self.graph
                                                                 ) is not False:
 
                     # Find next station and distance
-                    next_station, distance = station_object.get_nearest_unvisited_connection(self.graph)
+                    next_station, distance = station_object.get_nearest_unvisited_station(self.graph)
                     distance = int(float(distance))
                     # Check if possible within timeframe
                     if (traject.total_distance + distance) > self.timeframe:

@@ -6,6 +6,7 @@ class Connection():
         self.station2 = station2
         self.distance = distance
         self.connection_set = {self.station1, self.station2}
+        self.is_visited = False
 
     # def __repr__(self) -> str:
 

@@ -38,27 +38,56 @@ class Station():
         else:
             return False
 
-    def get_nearest_unvisited_connection(self, graph: Any) -> Any:
-        """ Method returns nearest unvisited connection of a station. """
+    def get_nearest_unvisited_station(self, graph: Any) -> Any:
+        """ Method returns nearest unvisited station of a station. """
 
         # Create empty unvisited dict
-        unvisited_connections_dict: Dict[str, int] = {}
+        unvisited_stations_dict: Dict[str, int] = {}
 
         # Add all unvisited connected stations to dict with corresponding
         # distance as value
         for key in self.connections.keys():
             if graph.stations[key].is_visited is False:
-                unvisited_connections_dict[key] = self.connections[key]
+                unvisited_stations_dict[key] = self.connections[key]
 
         # Check if dict is empty
-        if not unvisited_connections_dict:
+        if not unvisited_stations_dict:
             return False
 
         else:
+            # Find station with shortest distance
+            nearest_con = min(unvisited_stations_dict,
+                              key=unvisited_stations_dict.get)
+            return nearest_con, unvisited_stations_dict[nearest_con]
+        
+    def get_nearest_unvisited_connection(self, graph):
+        """
+        Returns nearest unvisited connection
+        """ 
+        # Create empty connection dict
+        connection_dict: Dict[Connection, list[str, int]]= {}
+
+        for connection in self.connections_list:
+            if connection.is_visited is False:
+                # Add connection object to connection dict with the distance as its value
+                connection_dict[connection] = [str(connection.connection_set.difference(self)), self.connections[connection]]
+
+        # Check if dict is empty
+        if not connection_dict:
+            return False
+        else:
             # Find connection with shortest distance
-            nearest_con = min(unvisited_connections_dict,
-                              key=unvisited_connections_dict.get)
-            return nearest_con, unvisited_connections_dict[nearest_con]
+            nearest_con = min(connection_dict,
+                              key=connection_dict.get)
+            connected_station = connection_dict[nearest_con][0]
+            # Return connected_station, connection object, distance to connected station
+            return connected_station, nearest_con, self.connections[connected_station]
+
+
+
+
+
+
 
     def __repr__(self) -> str:
         return self.name
