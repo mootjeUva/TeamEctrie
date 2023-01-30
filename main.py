@@ -46,6 +46,9 @@ if __name__ == "__main__":
     # best_greedy_score = 0
     # best_greedy_line = []
     # greedy_score_list = []
+    # best_greedy_score = 0
+    # best_greedy_line = []
+    # greedy_score_list = []
 
     # for i in range(1):
     #     graph = Graph('data/StationsNationaal.csv',
@@ -100,15 +103,15 @@ if __name__ == "__main__":
 
     #--------------------------HillClimber Albgorithm-----------------------------
 
-    # graph = Graph('data/StationsNationaal.csv',
-    #             'data/ConnectiesNationaal.csv')
+     graph = Graph('data/StationsNationaal.csv',
+                 'data/ConnectiesNationaal.csv')
     
-    # gr = RandomGreedy(graph, 180, 20)
-    # gr.run()
-    # hillclimb = HillClimber(graph,180, gr)
-    # hillclimb.run(3)    
-    # print(gr.line.score(graph))
-    # print(hillclimb.best_state.line.score(graph))  
+     gr = RandomGreedy(graph, 180, 20)
+     gr.run()
+     print(gr.line.score(graph))
+     hillclimb = HillClimber(graph,180, gr)
+     hillclimb.run(10000)    
+     print(hillclimb.best_state.line.score(graph))  
     
     
     # best_hillclimber_score = 0

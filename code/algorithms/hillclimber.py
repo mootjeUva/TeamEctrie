@@ -21,42 +21,34 @@ class HillClimber:
     
     def run(self,iterations):
         for i in range(iterations):
-            print(i)
             next_traject = self.generate_random_traject()
-            print("next")
-            print(next_traject.line.lines)
             current_state_copy = copy.deepcopy(self.current_state)
             self.remove_lowest_scoring_traject()
-            self.current_state.line.lines.append(next_traject.line)
+            self.current_state.line.add_traject(next_traject)
 
             if self.current_state.line.score(self.graph) > self.best_state.line.score(self.graph):
                 self.best_state = self.current_state
             else:
                 self.current_state = current_state_copy
-            print("current")
-            print(self.current_state.line.lines)
-            print("best")
-            print(self.best_state.line.lines)
-        
     
     def generate_random_traject(self):
         # Generate a single random traject
         random_traject = Randomise(self.graph, self.timeframe, 1)
         random_traject.run()
-        return random_traject
+        return random_traject.line.trajects[0]
     
     def remove_lowest_scoring_traject(self):
         # create an empty list
         score = []
         # remove every traject one at a time and calculate the score
-        for traject in self.current_state.line.lines.copy():
-            self.current_state.line.lines.remove(traject)
+        for traject in self.current_state.line.trajects.copy():
+            self.current_state.line.remove_traject(traject)
             score.append(self.current_state.line.score(self.graph))
-            self.current_state.line.lines.append(traject)
+            self.current_state.line.add_traject(traject)
         
         # remove the lowest scoring traject
         lowest_score_index = score.index(min(score))
-        self.current_state.line.lines.remove(self.current_state.line.lines[lowest_score_index])
+        self.current_state.line.remove_traject(self.current_state.line.trajects[lowest_score_index])
 
 
 
