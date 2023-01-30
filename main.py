@@ -43,27 +43,27 @@ if __name__ == "__main__":
     # # vis.save_output('best_random')
 
     # # ---------------------------RandomGreedy Algorithm-----------------------
-    best_greedy_score = 0
-    best_greedy_line = []
-    greedy_score_list = []
+    # best_greedy_score = 0
+    # best_greedy_line = []
+    # greedy_score_list = []
 
-    for i in range(1000):
-        graph = Graph('data/StationsNationaal.csv',
-                      'data/ConnectiesNationaal.csv')
-        gr = RandomGreedy(graph, 180, 20)
-        gr.run()
-        if gr.line.score(graph) > best_greedy_score:
-            best_greedy_score = gr.line.score(graph)
-            best_greedy_line = gr.line.lines
-        greedy_score_list.append(gr.line.score(graph))
+    # for i in range(1000):
+    #     graph = Graph('data/StationsNationaal.csv',
+    #                   'data/ConnectiesNationaal.csv')
+    #     gr = RandomGreedy(graph, 180, 20)
+    #     gr.run()
+    #     if gr.line.score(graph) > best_greedy_score:
+    #         best_greedy_score = gr.line.score(graph)
+    #         best_greedy_line = gr.line.lines
+    #     greedy_score_list.append(gr.line.score(graph))
 
-    greedy_average_score = round(sum(greedy_score_list)/len(greedy_score_list))
-    greedy_minn = sorted(greedy_score_list, reverse=False)[0]
-    greedy_maxx = sorted(greedy_score_list, reverse=True)[0]
-    greedy_sd = round(np.std(greedy_score_list))
-    print(f"Greedy average_score = {greedy_average_score}")
-    print(f"Greedy standard_deviation = {greedy_sd}")
-    print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
+    # greedy_average_score = round(sum(greedy_score_list)/len(greedy_score_list))
+    # greedy_minn = sorted(greedy_score_list, reverse=False)[0]
+    # greedy_maxx = sorted(greedy_score_list, reverse=True)[0]
+    # greedy_sd = round(np.std(greedy_score_list))
+    # print(f"Greedy average_score = {greedy_average_score}")
+    # print(f"Greedy standard_deviation = {greedy_sd}")
+    # print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
 
     # vis2 = Visualization(graph)
     # vis2.add_stations(graph)
@@ -73,15 +73,15 @@ if __name__ == "__main__":
 
     #--------------------------HillClimber Albgorithm-----------------------------
 
-    # graph = Graph('data/StationsNationaal.csv',
-    #             'data/ConnectiesNationaal.csv')
+     graph = Graph('data/StationsNationaal.csv',
+                 'data/ConnectiesNationaal.csv')
     
-    # gr = RandomGreedy(graph, 180, 20)
-    # gr.run()
-    # hillclimb = HillClimber(graph,180, gr)
-    # hillclimb.run(3)    
-    # print(gr.line.score(graph))
-    # print(hillclimb.best_state.line.score(graph))  
+     gr = RandomGreedy(graph, 180, 20)
+     gr.run()
+     print(gr.line.score(graph))
+     hillclimb = HillClimber(graph,180, gr)
+     hillclimb.run(10000)    
+     print(hillclimb.best_state.line.score(graph))  
     
     
     # best_hillclimber_score = 0
