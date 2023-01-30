@@ -5,7 +5,7 @@ import numpy as np
 from code.algorithms.greedy import RandomGreedy
 # from code.visualisation.visualise import Visualization
 from code.algorithms.hillclimber import HillClimber
-
+from code.algorithms.greedy2 import Greedy2
 
 
 if __name__ == "__main__":
@@ -43,27 +43,54 @@ if __name__ == "__main__":
     # # vis.save_output('best_random')
 
     # # ---------------------------RandomGreedy Algorithm-----------------------
-    best_greedy_score = 0
-    best_greedy_line = []
-    greedy_score_list = []
+    # best_greedy_score = 0
+    # best_greedy_line = []
+    # greedy_score_list = []
 
-    for i in range(1000):
+    # for i in range(1):
+    #     graph = Graph('data/StationsNationaal.csv',
+    #                   'data/ConnectiesNationaal.csv')
+    #     gr = RandomGreedy(graph, 180, 20)
+    #     gr.run()
+    #     if gr.line.score(graph) > best_greedy_score:
+    #         best_greedy_score = gr.line.score(graph)
+    #         best_greedy_line = gr.line.lines
+    #     greedy_score_list.append(gr.line.score(graph))
+
+    # greedy_average_score = round(sum(greedy_score_list)/len(greedy_score_list))
+    # greedy_minn = sorted(greedy_score_list, reverse=False)[0]
+    # greedy_maxx = sorted(greedy_score_list, reverse=True)[0]
+    # greedy_sd = round(np.std(greedy_score_list))
+    # print(f"Greedy average_score = {greedy_average_score}")
+    # print(f"Greedy standard_deviation = {greedy_sd}")
+    # print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
+
+    best_greedy2_score = 0
+    best_greedy2_line = []
+    greedy2_score_list = []
+
+    for j in range(1000):
         graph = Graph('data/StationsNationaal.csv',
                       'data/ConnectiesNationaal.csv')
-        gr = RandomGreedy(graph, 180, 20)
-        gr.run()
-        if gr.line.score(graph) > best_greedy_score:
-            best_greedy_score = gr.line.score(graph)
-            best_greedy_line = gr.line.lines
-        greedy_score_list.append(gr.line.score(graph))
+        gr2 = Greedy2(graph, 180, 20)
+        gr2.run()
+        if gr2.line.score(graph) > best_greedy2_score:
+            best_greedy2_score = gr2.line.score(graph)
+            best_greedy2_line = gr2.line.lines
+        greedy2_score_list.append(gr2.line.score(graph))
+    print(best_greedy2_line)
 
-    greedy_average_score = round(sum(greedy_score_list)/len(greedy_score_list))
-    greedy_minn = sorted(greedy_score_list, reverse=False)[0]
-    greedy_maxx = sorted(greedy_score_list, reverse=True)[0]
-    greedy_sd = round(np.std(greedy_score_list))
-    print(f"Greedy average_score = {greedy_average_score}")
-    print(f"Greedy standard_deviation = {greedy_sd}")
-    print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
+    greedy2_average_score = round(sum(greedy2_score_list)/len(greedy2_score_list))
+    greedy2_minn = sorted(greedy2_score_list, reverse=False)[0]
+    greedy2_maxx = sorted(greedy2_score_list, reverse=True)[0]
+    greedy2_sd = round(np.std(greedy2_score_list))
+    print(f"Greedy2 average_score = {greedy2_average_score}")
+    print(f"Greedy2 standard_deviation = {greedy2_sd}")
+    print(f"Greedy2 (Min, Max) = ({greedy2_minn}, {greedy2_maxx})")
+    # print(best_greedy2_line)
+
+    
+
 
     # vis2 = Visualization(graph)
     # vis2.add_stations(graph)

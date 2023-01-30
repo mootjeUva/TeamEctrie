@@ -8,6 +8,6 @@ class Connection():
         self.connection_set = {self.station1, self.station2}
         self.is_visited = False
 
-    # def __repr__(self) -> str:
+    def __repr__(self) -> str:
 
-    #     return f"{self.station1}, {self.station2}, {self.distance}"
+        return f"{self.station1}, {self.station2}, {self.distance}"

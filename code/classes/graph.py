@@ -11,6 +11,7 @@ class Graph():
         self.stations = self.load_stations(station_file)
         self.all_connections: List[Connection] = []
         self.connections = self.load_connections(connection_file)
+        self.connection_object_dict = {}
 
     def load_stations(self, source_file: str) -> Dict[str, Station]:
         """ Load all stations into the graph. """
@@ -51,10 +52,12 @@ class Graph():
                 # Add connection to specific station in both ways
                 self.stations[connection.station1].add_connection(
                                                     connection.station2,
-                                                    connection.distance)
+                                                    connection.distance,
+                                                    connection)
                 self.stations[connection.station2].add_connection(
                                                     connection.station1,
-                                                    connection.distance)
+                                                    connection.distance,
+                                                    connection)
                 # Add connection in connections dict both ways:
                 # station 1 to station 2 and vice versa
                 if connection.station1 not in connections.keys():

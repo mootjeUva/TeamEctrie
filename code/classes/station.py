@@ -12,15 +12,24 @@ class Station():
         self.connections: Dict[str, int] = {}
         self.is_visited = False
         self.connections_list: List[Connection] = []
+        self.connection_objects_dict = {}
 
-    def add_connection(self, station: str, distance: int) -> None:
-
+    def add_connection(self, station: str, distance: int, connection: Connection) -> None:
         self.connections[station] = distance
-        self.connections_list.append(Connection(self.name, station, distance))
+        if connection not in self.connections_list:
+            self.connections_list.append(connection)
+        self.connection_objects_dict[station] = connection
 
     def get_connection(self) -> List[Connection]:
 
         return self.connections_list
+    
+    def get_connection_object(self, station):
+        """
+        Method returns the connection object
+        """
+        return self.connection_objects_dict[station]
+
 
     def highest_potential(self, graph: Any) -> Any:
         """ This method returns a visited connection which has by itself
@@ -60,7 +69,7 @@ class Station():
                               key=unvisited_stations_dict.get)
             return nearest_con, unvisited_stations_dict[nearest_con]
         
-    def get_nearest_unvisited_connection(self, graph):
+    def get_nearest_unvisited_connection(self):
         """
         Returns nearest unvisited connection
         """ 
@@ -68,26 +77,56 @@ class Station():
         connection_dict: Dict[Connection, list[str, int]]= {}
 
         for connection in self.connections_list:
-            if connection.is_visited is False:
+            if connection.is_visited == False:
                 # Add connection object to connection dict with the distance as its value
-                connection_dict[connection] = [str(connection.connection_set.difference(self)), self.connections[connection]]
+                tmp_con_list = list(connection.connection_set)
+                tmp_con_list.remove(self.name)
+                connection_dict[connection] = [tmp_con_list[0], connection.distance]
 
         # Check if dict is empty
         if not connection_dict:
             return False
         else:
             # Find connection with shortest distance
-            nearest_con = min(connection_dict,
-                              key=connection_dict.get)
+            tmp = 1000
+            nearest_con = ''
+            for con in connection_dict:
+                if con.distance < tmp:
+                    tmp = con.distance
+                    nearest_con = con
+
             connected_station = connection_dict[nearest_con][0]
+            distance = self.connections[connected_station]
+            con_object = self.get_connection_object(connected_station)
             # Return connected_station, connection object, distance to connected station
-            return connected_station, nearest_con, self.connections[connected_station]
+            return connected_station, con_object, distance
+        
+    def get_highest_potential_connection(self, graph, tmp):
+        """
+        Returns highest potential connection
+        """
+        connected_stations = []
 
+        # Find connected stations
+        for station in self.connections.keys():
+            connected_stations.append(station)
+        
+        if tmp in connected_stations:
+            connected_stations.remove(tmp)
+        
+        if not connected_stations:
+            return False
 
-
-
-
-
+        # Loop over stations in connected stations
+        for station in connected_stations:
+            # Loop over the connections of the connected stations
+            for i in range(len(graph.stations[station].connections_list)):
+                # Check if that connection isn't visited yet
+                if graph.stations[station].connections_list[i].is_visited == False:
+                    # If not visited yet, return station and distance (connection isn't important because the connection is already visited)
+                    return station, self.connections[station]
+        return False
+            
 
     def __repr__(self) -> str:
         return self.name

@@ -15,7 +15,6 @@ class Traject():
         self.total_distance += distance
 
     def add_connection(self, connection_set: Set[str]) -> None:
-
         self.ridden_connections.append(connection_set)
 
     def __str__(self) -> str:
