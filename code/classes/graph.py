@@ -11,7 +11,7 @@ class Graph():
         self.stations = self.load_stations(station_file)
         self.all_connections: List[Connection] = []
         self.connections = self.load_connections(connection_file)
-        self.connection_object_dict = {}
+        self.connection_object_dict: Dict[str, Connection] = {}
 
     def load_stations(self, source_file: str) -> Dict[str, Station]:
         """ Load all stations into the graph. """

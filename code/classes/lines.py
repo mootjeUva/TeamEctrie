@@ -10,7 +10,7 @@ class Lines():
         self.lines: List[Any] = []
         self.distances = 0
         self.connections: List[Set[str]] = []
-        self.trajects = []
+        self.trajects: List[Traject] = []
 
     def add_traject(self, traject: Traject) -> None:
         self.trajects.append(traject)
@@ -37,7 +37,6 @@ class Lines():
         for con_set in traject.ridden_connections:
             if con_set in self.connections:
                 self.connections.remove(con_set)
-
 
     def score(self, graph: Graph) -> float:
 

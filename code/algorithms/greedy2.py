@@ -1,29 +1,27 @@
-from code.classes.graph import Graph
 from code.classes.traject import Traject
-from code.classes.verbinding import Connection
 from code.classes.lines import Lines
-import time
 import random
 import copy
+from code.classes.graph import Graph
+
 
 class Greedy2():
-    """
-    2nd version of the greedy algorithm which look for unvisited connections instead of stations
-    """
-    def __init__(self, graph, timeframe, max_traject):
+    """ 2nd version of the greedy algorithm which look for unvisited
+        connections instead of stations. """
+
+    def __init__(self, graph: Graph, timeframe: int, max_traject: int) -> None:
+
         self.graph = graph
         self.timeframe = timeframe
         self.max_trajects = max_traject
+
         # self.runtime = runtime
         self.best_K = 0
         self.line = Lines()
 
+    def run(self) -> None:
+        """ run method. """
 
-
-    def run(self):
-        """
-        run method
-        """
         # start = time.time()
         # n_runs = 0
 
@@ -31,11 +29,11 @@ class Greedy2():
         #     n_runs += 1
         #     print(f"run: {n_runs}")
 
-            # for each try, create a new graph and new line
+        # for each try, create a new graph and new line
         new_graph = copy.deepcopy(self.graph)
 
         for i in range(self.max_trajects):
-            
+
             # Create empty traject
             traject = Traject()
 
@@ -45,8 +43,10 @@ class Greedy2():
             # Select an unvisited starting station
             current_station = new_graph.not_visited_yet(endpoint_stations)
 
-            if current_station == False:
-                current_station = random.choice(list(new_graph.stations.keys()))
+            if current_station is False:
+                current_station = random.choice(
+                    list(new_graph.stations.keys())
+                    )
 
             new_graph.stations[current_station].is_visited = True
 
@@ -54,10 +54,13 @@ class Greedy2():
                 station_object = new_graph.stations[current_station]
 
                 # Check if there is an unvisited station
-                if station_object.get_nearest_unvisited_connection() != False:
+                if station_object.get_nearest_unvisited_connection() \
+                   is not False:
 
-                    # Find next station and distance, set connections is visited to true
-                    next_station, con_object, distance = station_object.get_nearest_unvisited_connection()
+                    # Find next station and distance, set connections
+                    # is visited to true
+                    next_station, con_object, distance = \
+                        station_object.get_nearest_unvisited_connection()
                     distance = int(float(distance))
                     new_graph.stations[next_station].is_visited = True
                     con_object.is_visited = True
@@ -76,15 +79,21 @@ class Greedy2():
 
                 else:
                     # Go to next station with highest potential (if not tmp)
-                    if station_object.get_highest_potential_connection(new_graph, tmp) != False:
-                        next_station, distance = station_object.get_highest_potential_connection(new_graph, tmp)
+                    if station_object.get_highest_potential_connection(
+                            new_graph, tmp
+                            ) is not False:
+                        next_station, distance = \
+                            station_object.get_highest_potential_connection(
+                                new_graph, tmp
+                                )
                         distance = int(float(distance))
 
                         # Check if possible within timeframe
-                        if (traject.total_distance + distance) > self.timeframe:
+                        if (traject.total_distance+distance) > self.timeframe:
                             break
 
-                        # Add station to traject (connection not necessary because already visited)
+                        # Add station to traject
+                        # (connection not necessary because already visited)
                         traject.add_station(next_station, distance)
 
                         # Change current station
@@ -93,25 +102,9 @@ class Greedy2():
                     else:
                         break
 
-                # len(traject.stations) can be adjusted to alpha to determine its optimal parameter
+                # len(traject.stations) can be adjusted to alpha to
+                # determine its optimal parameter
                 if len(traject.stations) <= 3:
                     continue
 
             self.line.add_traject(traject)
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-
-
-                
-
