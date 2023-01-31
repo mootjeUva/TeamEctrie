@@ -79,9 +79,13 @@ if __name__ == "__main__":
         gr2.run()
         if gr2.line.score(graph) > best_greedy2_score:
             best_greedy2_score = gr2.line.score(graph)
-            best_greedy2_line = gr2.line.lines
+            best_greedy2_line = gr2.line
         greedy2_score_list.append(gr2.line.score(graph))
-    print(best_greedy2_line)
+    print(best_greedy2_line.lines)
+    print(f"Total Distance: {best_greedy2_line.distances}")
+    print(f"N Trajects: {len(best_greedy2_line.lines)}")
+    print(f"N Ridden Connections: {len(best_greedy2_line.connections)}")
+    print(f"N All Connections: {len(graph.all_connections)}")
 
     greedy2_average_score = round(sum(greedy2_score_list)/len(greedy2_score_list))
     greedy2_minn = sorted(greedy2_score_list, reverse=False)[0]
@@ -103,15 +107,15 @@ if __name__ == "__main__":
 
     #--------------------------HillClimber Albgorithm-----------------------------
 
-     graph = Graph('data/StationsNationaal.csv',
-                 'data/ConnectiesNationaal.csv')
+    #  graph = Graph('data/StationsNationaal.csv',
+    #              'data/ConnectiesNationaal.csv')
     
-     gr = RandomGreedy(graph, 180, 20)
-     gr.run()
-     print(gr.line.score(graph))
-     hillclimb = HillClimber(graph,180, gr)
-     hillclimb.run(10000)    
-     print(hillclimb.best_state.line.score(graph))  
+    #  gr = RandomGreedy(graph, 180, 20)
+    #  gr.run()
+    #  print(gr.line.score(graph))
+    #  hillclimb = HillClimber(graph,180, gr)
+    #  hillclimb.run(10000)    
+    #  print(hillclimb.best_state.line.score(graph))  
     
     
     # best_hillclimber_score = 0
