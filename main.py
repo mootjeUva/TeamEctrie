@@ -48,25 +48,25 @@ if __name__ == "__main__":
             vis.add_traject(line, graph)
         vis.save_output(str_name)
 
-    bestrandom = runner(graph, Randomise, 180, 20, 2, False)
-    bestrandomgreedy = runner(graph, RandomGreedy, 180, 20, 2, False)
-    bestgreedy2 = runner(graph, Greedy2, 180, 20, 5000, False)
-    
-    #hillclimb = HillClimber(graph, 180, bestgreedy2)
-    #hillclimb.run(2)
-
+    bestrandom = runner(graph, Randomise, 180, 20, 1000, False)
     save_vis(graph, bestrandom.line.lines, "best_random")
-    save_vis(graph, bestrandomgreedy.line.lines, "best_random-greedy")
-    save_vis(graph, bestgreedy2.line.lines, "best_greedy2")
-    #save_vis(graph, hillclimb.best_state.line.lines, "best_hillclimber")
 
+    bestrandomgreedy = runner(graph, RandomGreedy, 180, 20, 1000, False)
+    save_vis(graph, bestrandomgreedy.line.lines, "best_random-greedy")
+
+    bestgreedy2 = runner(graph, Greedy2, 180, 20, 5000, False)
+    save_vis(graph, bestgreedy2.line.lines, "best_greedy2")
+
+    hillclimb = HillClimber(graph, 180, bestgreedy2)
+    hillclimb.run(5000)
+    save_vis(graph, hillclimb.best_state.line.lines, "best_hillclimber")
 
     with open('output.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["train", "stations"])
         i = 1
-        for lin in bestgreedy2.line.lines:
-            formatted_lin = ", ".join([str(item).replace("'", "") for item in lin])
-            writer.writerow([f"train_{i}", f"[{formatted_lin}]"])
+        for lin in hillclimb.best_state.line.lines:
+            lin2 = ", ".join([str(item).replace("'", "") for item in lin])
+            writer.writerow([f"train_{i}", f"[{lin2}]"])
             i += 1
-        writer.writerow([f"score", f"{bestgreedy2.line.score(graph)}"])
+        writer.writerow(["score", f"{hillclimb.best_state.line.score(graph)}"])
