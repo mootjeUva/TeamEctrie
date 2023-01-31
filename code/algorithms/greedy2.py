@@ -102,9 +102,9 @@ class Greedy2():
                     else:
                         break
 
-                # len(traject.stations) can be adjusted to alpha to
-                # determine its optimal parameter
-                if len(traject.stations) <= 3:
-                    continue
+            # len(traject.stations) can be adjusted to alpha
+            # to determine its optimal parameter
+            if len(traject.stations) <= 1:
+                continue
 
             self.line.add_traject(traject)
