@@ -1,9 +1,9 @@
 # type: ignore
 from code.classes.graph import Graph
-# from code.algorithms.randomise import Randomise
-# import numpy as np
+from code.algorithms.randomise import Randomise
+import numpy as np
 from code.algorithms.greedy import RandomGreedy
-# from code.visualisation.visualise import Visualization
+from code.visualisation.visualise import Visualization
 from code.algorithms.hillclimber import HillClimber
 from code.algorithms.greedy2 import Greedy2
 
@@ -11,139 +11,47 @@ from code.algorithms.greedy2 import Greedy2
 if __name__ == "__main__":
 
     # Create graph and empty traject
-    # graph = Graph('data/StationsNationaal.csv',
-    #               'data/ConnectiesNationaal.csv')
-
-    # -------------------------Random Algorithm-------------------------
-    # best_randomscore = 0
-    # best_randomline = []
-    # random_score_list = []
-
-    # for j in range(1000):
-    #     rd = Randomise(graph, 180, 20)
-    #     rd.run()
-    #     if rd.line.score(graph) > best_randomscore:
-    #         best_randomscore = rd.line.score(graph)
-    #         best_randomline = rd.line.lines
-
-    #     random_score_list.append(rd.line.score(graph))
-
-    # random_average_score=round(sum(random_score_list)/len(random_score_list))
-    # random_minn = sorted(random_score_list, reverse=False)[0]
-    # random_maxx = sorted(random_score_list, reverse=True)[0]
-    # random_standard_deviation = round(np.std(random_score_list))
-    # print(f"Random average_score = {random_average_score}")
-    # print(f"Random standard_deviation = {random_standard_deviation}")
-    # print(f"Random (Min, Max) = ({random_minn}, {random_maxx})")
-
-    # # vis = Visualization(graph)
-    # # vis.add_stations(graph)
-    # # for line in best_randomline:
-    # #     vis.add_traject(line, graph)
-    # # vis.save_output('best_random')
-
-    # ---------------------------RandomGreedy Algorithm-----------------------
-    # best_greedy_score = 0
-    # best_greedy_line = []
-    # greedy_score_list = []
-    # best_greedy_score = 0
-    # best_greedy_line = []
-    # greedy_score_list = []
-
-    # for i in range(1):
-    #     graph = Graph('data/StationsNationaal.csv',
-    #                   'data/ConnectiesNationaal.csv')
-    #     gr = RandomGreedy(graph, 180, 20)
-    #     gr.run()
-    #     if gr.line.score(graph) > best_greedy_score:
-    #         best_greedy_score = gr.line.score(graph)
-    #         best_greedy_line = gr.line.lines
-    #     greedy_score_list.append(gr.line.score(graph))
-
-    # greedy_average_score=round(sum(greedy_score_list)/len(greedy_score_list))
-    # greedy_minn = sorted(greedy_score_list, reverse=False)[0]
-    # greedy_maxx = sorted(greedy_score_list, reverse=True)[0]
-    # greedy_sd = round(np.std(greedy_score_list))
-    # print(f"Greedy average_score = {greedy_average_score}")
-    # print(f"Greedy standard_deviation = {greedy_sd}")
-    # print(f"Greedy (Min, Max) = ({greedy_minn}, {greedy_maxx})")
-
-    # best_greedy2_score = 0
-    # best_greedy2_line = []
-    # greedy2_score_list = []
-
-    # for j in range(5):
-    #     graph = Graph('data/StationsNationaal.csv',
-    #                   'data/ConnectiesNationaal.csv')
-    #     gr2 = Greedy2(graph, 180, 20)
-    #     gr2.run()
-    #     if gr2.line.score(graph) > best_greedy2_score:
-    #         best_greedy2_score = gr2.line.score(graph)
-    #         best_greedy2_line = gr2.line
-    #     greedy2_score_list.append(gr2.line.score(graph))
-    # print(best_greedy2_line.lines)
-    # print(f"Total Distance: {best_greedy2_line.distances}")
-    # print(f"N Trajects: {len(best_greedy2_line.lines)}")
-    # print(f"N Ridden Connections: {len(best_greedy2_line.connections)}")
-    # print(f"N All Connections: {len(graph.all_connections)}")
-    # print(best_greedy2_score)
-
-    # greedy2_average_score = sum(greedy2_score_list)/len(greedy2_score_list)
-    # greedy2_minn = sorted(greedy2_score_list, reverse=False)[0]
-    # greedy2_maxx = sorted(greedy2_score_list, reverse=True)[0]
-    # greedy2_sd = round(np.std(greedy2_score_list))
-    # print(f"Greedy2 average_score = {greedy2_average_score}")
-    # print(f"Greedy2 standard_deviation = {greedy2_sd}")
-    # print(f"Greedy2 (Min, Max) = ({greedy2_minn}, {greedy2_maxx})")
-    # print(best_greedy2_line)
-
-    # vis2 = Visualization(graph)
-    # vis2.add_stations(graph)
-    # for line in best_greedy_line:
-    #     vis2.add_traject(line, graph)
-    # vis2.save_output('best_greedy')
-
-    # -------------------------HillClimber Algorithm-------------------------
-
     graph = Graph('data/StationsNationaal.csv',
                   'data/ConnectiesNationaal.csv')
 
-    gr = Greedy2(graph, 180, 20)
-    gr.run()
-    print(gr.line.score(graph))
-    hillclimb = HillClimber(graph, 180, gr)
-    hillclimb.run(100)
-    print(hillclimb.best_state.line.score(graph))
-#        tl.append(round(hillclimb.best_state.line.score(graph), 1))
-#    print(tl)
-#    print(f"\n (Min, Max) = ({min(tl)}, {max(tl)})")
+    def runner(graph: Graph, Algo, timeframe: int,
+               max_traject: int, iter: int, bool: bool):
+        bestscore = 0
+        scorelist = []
 
-    #  graph = Graph('data/StationsNationaal.csv',
-    #              'data/ConnectiesNationaal.csv')
+        for i in range(iter):
+            algor = Algo(graph, timeframe, max_traject)
+            algor.run()
+            if algor.line.score(graph) > bestscore:
+                bestscore = algor.line.score(graph)
+                bestalgo = algor
 
-    #  gr = RandomGreedy(graph, 180, 20)
-    #  gr.run()
-    #  print(gr.line.score(graph))
-    #  hillclimb = HillClimber(graph,180, gr)
-    #  hillclimb.run(10000)
-    #  print(hillclimb.best_state.line.score(graph))
+            scorelist.append(algor.line.score(graph))
 
-    # best_hillclimber_score = 0
-    # best_hillclimber_line = []
-    # hillclimber_score_list = []
+        averagescore = round(sum(scorelist)/len(scorelist), 2)
+        minn = sorted(scorelist, reverse=False)[0]
+        maxx = sorted(scorelist, reverse=True)[0]
+        standard_deviation = round(np.std(scorelist))
+        if bool is True:
+            print(f"average_score = {averagescore}")
+            print(f"standard_deviation = {standard_deviation}")
+            print(f"(Min, Max) = ({minn}, {maxx})")
+        return bestalgo
 
-    # for i in range(1000):
-    #     hc = HillClimber(graph, gr.line, 180)
-    #     hc.run()
-    #     if hc.best_line.score(graph) > best_hillclimber_score:
-    #         best_hillclimber_score = hc.best_line.score(graph)
-    #         best_hillclimber_line = hc.best_line.lines
+    def save_vis(graph: Graph, lines, str_name: str) -> None:
+        vis = Visualization(graph)
+        vis.add_stations(graph)
+        for line in lines:
+            vis.add_traject(line, graph)
+        vis.save_output(str_name)
 
-    # hillclimber_average_score =
-    # round(sum(hillclimber_score_list)/len(hillclimber_score_list))
-    # hillclimber_minn = sorted(hillclimber_score_list, reverse=False)[0]
-    # hillclimber_maxx = sorted(hillclimber_score_list, reverse=True)[0]
-    # hillclimber_sd = round(np.std(hillclimber_score_list))
-    # print(f"hillclimber average_score = {hillclimber_average_score}")
-    # print(f"hillclimber standard_deviation = {hillclimber_sd}")
-    # print(f"hillclimber(Min, Max) = ({hillclimber_minn},{hillclimber_maxx})")
+    bestrandom = runner(graph, Randomise, 180, 20, 1000, False)
+    bestrandomgreedy = runner(graph, RandomGreedy, 180, 20, 1000, False)
+    bestgreedy2 = runner(graph, Greedy2, 180, 20, 2000, False)
+    hillclimb = HillClimber(graph, 180, bestgreedy2)
+    hillclimb.run(1000)
+
+    save_vis(graph, bestrandom.line.lines, "best_random")
+    save_vis(graph, bestrandomgreedy.line.lines, "best_random-greedy")
+    save_vis(graph, bestgreedy2.line.lines, "best_greedy2")
+    save_vis(graph, hillclimb.best_state.line.lines, "best_hillclimber")

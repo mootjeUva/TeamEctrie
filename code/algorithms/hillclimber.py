@@ -1,5 +1,4 @@
 import copy
-from code.algorithms.greedy import RandomGreedy
 from code.algorithms.randomise import Randomise
 from code.classes.graph import Graph
 from code.classes.traject import Traject

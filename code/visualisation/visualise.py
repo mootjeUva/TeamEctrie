@@ -47,4 +47,4 @@ class Visualization():
 
     def save_output(self, name: str) -> None:
 
-        self.map.save('{}_map.html'.format(name))
+        self.map.save('docs/{}_map.html'.format(name))
