@@ -3,6 +3,7 @@ from code.algorithms.greedy import RandomGreedy
 from code.algorithms.randomise import Randomise
 from code.classes.graph import Graph
 from code.classes.traject import Traject
+from typing import Any
 
 
 class HillClimber:
@@ -11,12 +12,12 @@ class HillClimber:
         kept for the next iteration. """
 
     def __init__(self, graph: Graph, timeframe: int,
-                 current_state: RandomGreedy) -> None:
+                 current_state: Any) -> None:
 
         self.graph = graph
         self.timeframe = timeframe
         self.current_state = current_state
-        self.best_state = self.current_state
+        self.best_state = current_state
 
     def run(self, iterations: int) -> None:
 
@@ -28,7 +29,7 @@ class HillClimber:
 
             if self.current_state.line.score(self.graph) > \
                self.best_state.line.score(self.graph):
-                self.best_state = self.current_state
+                self.best_state = current_state_copy
             else:
                 self.current_state = current_state_copy
 
@@ -50,7 +51,7 @@ class HillClimber:
             self.current_state.line.add_traject(traject)
 
         # remove the lowest scoring traject
-        lowest_score_index = score.index(min(score))
+        lowest_score_index = score.index(max(score))
         self.current_state.line.remove_traject(
             self.current_state.line.trajects[lowest_score_index]
             )

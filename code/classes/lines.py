@@ -27,11 +27,13 @@ class Lines():
                 self.connections.append(con_set)
 
     def remove_traject(self, traject: Traject) -> None:
-        self.trajects.remove(traject)
-        train_list = traject.stations
+        if traject in self.trajects:
+            self.trajects.remove(traject)
+            train_list = traject.stations
 
-        self.lines.remove(train_list)
-        self.distances -= traject.total_distance
+        if train_list in self.lines:
+            self.lines.remove(train_list)
+            self.distances -= traject.total_distance
 
         # Remove all new connection sets to self.connection
         for con_set in traject.ridden_connections:
@@ -41,10 +43,8 @@ class Lines():
     def score(self, graph: Graph) -> float:
 
         p = float(len(self.connections)/(len(graph.all_connections)))
-        if p >= 1:
-            p = 1
         T = len(self.lines)
         Min = self.distances
-        K = p*10000 - (T*100 + Min)
+        K = round(p*10000 - (T*100 + Min), 2)
 
         return K
