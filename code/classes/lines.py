@@ -45,6 +45,6 @@ class Lines():
         p = float(len(self.connections)/(len(graph.all_connections)))
         T = len(self.lines)
         Min = self.distances
-        K = round(p*10000 - (T*100 + Min), 2)
+        K = p*10000 - (T*100 + Min)
 
         return K
