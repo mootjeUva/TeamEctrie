@@ -58,6 +58,7 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
   - **/code/classes**: bevat de vijf benodigde classes voor deze case
   - **/code/visualisation**: bevat de benodigde code voor de visualisatie van deze case
 - **/data**: bevat de 4 verschillende databestanden die nodig zijn om de graaf te vullen en te visualiseren
+- **/docs**: bevat per algoritme, een visualisatie map, die het beste resultaat weergeeft
 
 ## Auteurs
 - Mohammed Wafelgha
