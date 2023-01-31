@@ -19,7 +19,7 @@ Maak wederom een lijnvoering voor Noord- en Zuid-Holland met maximaal zeven traj
 ## Resultaten
 
 <p align="center">
-  <img src="code/visualisation/best_Random-Greedy.png" alt="Best Random-Greedy">
+  <img src="docs/best_Random-Greedy.png" alt="Best Random-Greedy">
 </p>
 
 
