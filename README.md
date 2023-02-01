@@ -66,7 +66,7 @@ De algoritmen kunnen gerunt worden met
 python3 main.py
 ```
 
-De beste resultaten van de diverse algoritmen worden opgeslagen in CSV-bestanden in de map "results". Bovendien worden de resultaten gevisualiseerd en opgeslagen in de map "visualisation".
+De beste resultaten van de diverse algoritmen worden opgeslagen in CSV-bestanden in de map "results". Bovendien worden de resultaten gevisualiseerd en opgeslagen in de map "docs".
 
 ### Structuur
 
