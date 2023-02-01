@@ -3,8 +3,15 @@ from .verbinding import Connection
 
 
 class Station():
+    """ Class Station is used to create station objects which contain
+        information about the station's name, position (x, y),
+        connections to other stations and whether it has been visited. """
 
     def __init__(self, station: str, x: float, y: float) -> None:
+        """ This method is used to initialize the Station object with the
+            station's name, position (x, y), and empty data structures for
+            connections, visited status, list of connections,
+            and dictionary of connection objects. """
 
         self.name = station
         self.x = x
@@ -16,36 +23,21 @@ class Station():
 
     def add_connection(self, station: str, distance: int,
                        connection: Connection) -> None:
+        """ Method add_connection is used to add a new connection to a station.
+            The connection is added as a key-value pair to the connections
+            dictionary and as an object to the connections_list and
+            connection_objects_dict. """
 
         self.connections[station] = distance
         if connection not in self.connections_list:
             self.connections_list.append(connection)
         self.connection_objects_dict[station] = connection
 
-    def get_connection(self) -> List[Connection]:
-
-        return self.connections_list
-
     def get_connection_object(self, station: str) -> Any:
-        """ Method returns the connection object. """
+        """ This method returns the connection object between
+            the station and the given station. """
 
         return self.connection_objects_dict[station]
-
-    def highest_potential(self, graph: Any) -> Any:
-        """ This method returns a visited connection which has by itself
-            unvisited connections, else returns false. """
-
-        # Loops over all visited connections of self
-        for visited in self.connections.keys():
-            # Loops over all connections of the visited connections
-            for potential in graph.stations[visited].connections.keys():
-                # Check if there is any connection which isn't visited yet
-                if graph.stations[potential].is_visited is False:
-                    # Return the (already visited) station which has by itself
-                    # an unvisited connection
-                    return visited
-        else:
-            return False
 
     def get_nearest_unvisited_station(self, graph: Any) -> Any:
         """ Method returns nearest unvisited station of a station. """
@@ -131,7 +123,3 @@ class Station():
                     # is already visited)
                     return station, self.connections[station]
         return False
-
-    def __repr__(self) -> str:
-
-        return self.name

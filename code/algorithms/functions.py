@@ -63,7 +63,8 @@ def make_hist(list1: list, list2: list, name1: str, name2: str) -> None:
     # Labels and title
     plt.xlabel("Score")
     plt.ylabel("Frequency")
-    plt.title(f"The results of the {name1} and {name2} Algorithm done {len(list1)} times.")
+    plt.title("The results of the " + name1 + " and " + name2 +
+              " Algorithm done " + str(len(list1)) + " times.")
     plt.legend(labels=[f"{name1}", f"{name2}"], loc="upper right")
 
     # Save the plot as a pdf

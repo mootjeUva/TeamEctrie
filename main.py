@@ -6,6 +6,7 @@ from code.algorithms.hillclimber import HillClimber
 from code.algorithms.functions import runner, save_vis, csv_output, make_hist
 import csv
 
+
 if __name__ == "__main__":
 
     # Create graph and empty traject
@@ -26,3 +27,13 @@ if __name__ == "__main__":
     csv_output(graph, hillclimb.best_state.line, "best_hillclimber")
 
     make_hist(randlist, greedylist, "Random", "Random-Greedy")
+
+    with open("output.csv", 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["train", "stations"])
+        i = 1
+        for lin in bestgreedy.line.lines:
+            lin2 = ", ".join([str(item).replace("'", "") for item in lin])
+            writer.writerow([f"train_{i}", f"[{lin2}]"])
+            i += 1
+        writer.writerow(["score", f"{bestgreedy.line.score(graph)}"])

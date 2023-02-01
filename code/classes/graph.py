@@ -5,12 +5,18 @@ from typing import Dict, List, Any
 
 
 class Graph():
+    """ Class representing a graph data structure of the metro system. """
 
     def __init__(self, station_file: str, connection_file: str) -> None:
+        """ Initialize the Graph instance. """
 
+        # Load all the stations into the graph
         self.stations = self.load_stations(station_file)
+        # A list of all connections in the graph
         self.all_connections: List[Connection] = []
+        # Load all connections into the graph
         self.connections = self.load_connections(connection_file)
+        # A dictionary mapping connection objects to their str representation
         self.connection_object_dict: Dict[str, Connection] = {}
 
     def load_stations(self, source_file: str) -> Dict[str, Station]:
@@ -90,13 +96,6 @@ class Graph():
                 return station
 
         return False
-
-    def distance_between_stations(self, station1: str, station2: str) -> int:
-        """ This method returns the distance between two stations. """
-
-        distance = self.connections[station1][station2]
-
-        return distance
 
     def endpoint_stations(self) -> List[Any]:
         """ This method returns a list of all stations with only one
