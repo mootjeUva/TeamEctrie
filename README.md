@@ -18,8 +18,10 @@ Maak wederom een lijnvoering voor Noord- en Zuid-Holland met maximaal zeven traj
 
 ## Resultaten
 
+Totale $Min$ = 1551. $1551/180$ afgerond naar boven is 9 = $T$. Dus de maximale $K$ score is $10000 - (9*100+1551) = 7549$.
+
 <p align="center">
-  <img src="docs/best_Random-Greedy.png" alt="Best Random-Greedy">
+  <img src="docs/All_connecties.png" alt="All Connections">
 </p>
 
 
@@ -54,11 +56,12 @@ Het bestand geeft een voorbeeld voor gebruik van de verschillende functies.
 De hierop volgende lijst beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
 
 - **/code**: bevat alle code van dit project
-  - **/code/algorithms**: bevat de code voor algoritmes
+  - **/code/algorithms**: bevat de code voor algoritmes en een functions.py
   - **/code/classes**: bevat de vijf benodigde classes voor deze case
-  - **/code/visualisation**: bevat de benodigde code voor de visualisatie van deze case
+  - **/code/visualisation**: bevat de benodigde code voor de visualisatie van de case
 - **/data**: bevat de 4 verschillende databestanden die nodig zijn om de graaf te vullen en te visualiseren
-- **/docs**: bevat per algoritme, een visualisatie map, die het beste resultaat weergeeft
+- **/docs**: bevat per algoritme, een visualisatie map, die het beste resultaat weergeeft en afbeeldingen
+- **/results**: bevat per algoritme, de resultaten in de gekozen format
 
 ## Auteurs
 - Mohammed Wafelgha

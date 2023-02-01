@@ -8,14 +8,25 @@ class Traject():
         self.stations: List[str] = []
         self.total_distance = 0
         self.ridden_connections: List[Set[str]] = []
+        self.i: int = 0
+        self.j: int = 0
 
     def add_station(self, station: str, distance: int) -> None:
 
         self.stations.append(station)
-        self.total_distance += distance
+        if self.j == 0:
+            self.j = 1
+            return
+        else:
+            self.total_distance += distance
 
     def add_connection(self, connection_set: Set[str]) -> None:
-        self.ridden_connections.append(connection_set)
+
+        if self.i == 0:
+            self.i = 1
+            return
+        else:
+            self.ridden_connections.append(connection_set)
 
     def __str__(self) -> str:
 

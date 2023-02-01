@@ -43,7 +43,7 @@ class Lines():
     def score(self, graph: Graph) -> float:
 
         T = len(self.lines)
-        p = float((len(self.connections)+1-T)/(len(graph.all_connections)))
+        p = float((len(self.connections))/(len(graph.all_connections)))
         Min = self.distances
         K = p*10000 - (T*100 + Min)
 
