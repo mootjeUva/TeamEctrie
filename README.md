@@ -36,11 +36,15 @@ Voor dit probleem gelden de volgende restricties.
 
 ## Random
 
+Het Random-algoritme kiest willekeurig een station als beginpunt van een traject. Daarna worden er willekeurig stations geselecteerd op basis van de verbindingen. Dit blijft gebeuren zolang het tijdlimiet niet wordt overschreden. Terugkeren naar een vorig station is niet mogelijk in het traject
+
 ## Greedy 
+
+Greedy begint elk traject bij voorkeur met een onbezochte eindpuntstation. Een eindpunt is een station met slechts één spoorverbinding met een ander station. Als er geen beschikbaar is, wordt er een willekeurig onbezocht station gekozen om het traject te beginnen. Vanaf daar kiest hij steeds de kortste en onbezochte spoorverbindingen. Als alle verbindingen zijn bezocht, wordt er een spoorverbinding gekozen met de hoogste potentie, dat wil zeggen een spoorverbinding die nog onbezochte "kindverbindingen" heeft. Als er geen verbindingen met de hoogste potentie zijn, wordt het traject gesloten.
 
 ## Hillclimber
 
-Het Hill Climber-algoritme begint met de best mogelijke spoorlijnindeling die is gemaakt door het Greedy-algoritme. In elke iteratie wordt het traject met de laagste score uit de huidige lijnvoering verwijderd. Daarna wordt er één traject uit het Random Greedy-algoritme toegevoegd. Als de score van de nieuwe lijnvoering hoger is dan die van de oude, dan wordt dit de nieuwe beste oplossing. Dit proces wordt herhaald tot er een optimale oplossing is gevonden.
+Het Hillclimber-algoritme begint met de best mogelijke spoorlijnindeling die is gemaakt door het Greedy-algoritme. In elke iteratie wordt het traject met de laagste score uit de huidige lijnvoering verwijderd. Daarna wordt er één traject uit het Random Greedy-algoritme toegevoegd. Als de score van de nieuwe lijnvoering hoger is dan die van de oude, dan wordt dit de nieuwe beste oplossing. Dit proces wordt herhaald tot er een optimale oplossing is gevonden.
 
 ## Aan de slag
 
@@ -66,7 +70,7 @@ De algoritmen kunnen gerunt worden met
 python3 main.py
 ```
 
-De beste resultaten van de diverse algoritmen worden opgeslagen in CSV-bestanden in de map "results". Bovendien worden de resultaten gevisualiseerd en opgeslagen in de map "docs".
+De beste resultaten van de diverse algoritmen worden opgeslagen in CSV-bestanden in de map "results". Bovendien worden de resultaten gevisualiseerd en opgeslagen in de map "docs". De beste oplossing zal worden weergegeven in output.csv
 
 ### Structuur
 
