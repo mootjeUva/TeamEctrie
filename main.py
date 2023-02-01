@@ -6,6 +6,7 @@ from code.algorithms.hillclimber import HillClimber
 from code.algorithms.functions import runner, save_vis, csv_output, make_hist
 import csv
 
+
 if __name__ == "__main__":
 
     # Create graph and empty traject
