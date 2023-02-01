@@ -2,7 +2,7 @@
 
 ## Beschrijving
 
-Het vinden van een efficiënte spoorlijnindeling is cruciaal voor het treinverkeer in Nederland. Het is een complexe uitdaging die opgelost kan worden met behulp van AI-technologieën. Een spoorlijnindeling bestaat uit verschillende trajecten waarlangs treinen zich gedurende de dag verplaatsen. Een traject is dus een route tussen sporen en stations. Dit project richt zich op het vinden van de optimale spoorlijnindeling van de 61 belangrijkste intercitystations van Nederland. Elke treinstation is ten minste verbonden met één ander treinstation via een spoorverbinding. Een optimale lijnindeling bereikt zoveel mogelijk spoorverbindingen in de minste tijd en met zo min mogelijk trajecten. De kwaliteit van de spoorlijnindeling wordt uitgedrukt in de volgende doelfunctie.
+Het vinden van een efficiënte spoorlijnindeling is cruciaal voor het treinverkeer in Nederland. Het is een complexe uitdaging die opgelost kan worden met behulp van AI-technologieën. Een spoorlijnindeling bestaat uit verschillende trajecten waarlangs treinen zich gedurende de dag verplaatsen. Een traject is dus een route van sporen en stations. Dit project richt zich op het vinden van de optimale spoorlijnindeling van de 61 belangrijkste intercitystations van Nederland. Elke treinstation is ten minste verbonden met één ander treinstation via een spoorverbinding. Een optimale lijnindeling bereikt zoveel mogelijk spoorverbindingen in de minste tijd en met zo min mogelijk trajecten. De kwaliteit van de spoorlijnindeling wordt uitgedrukt in de volgende doelfunctie.
 
 $$
 \begin{aligned}
@@ -29,7 +29,7 @@ De totale reistijd van alle spoorverbindingen samen bedraagt 1551 minuten. Elk t
 
 Voor dit probleem gelden de volgende restricties.
 ### Restricties 
-- Elk traject heeft een maximale timeframe van 180 minuten
+- Elk traject heeft een maximale reistijd van 180 minuten
 - Opeenvolgende stations in een traject moeten verbindingen met elkaar hebben
 - Traject [Castricum , Zaandam , Hoorn , Alkmaar] is hetzelfde als [Alkmaar, Hoorn, Zaandam, Castricum]
 - Een geldige lijnvoering hoeft niet alle spoorverbindingen te bereiken
