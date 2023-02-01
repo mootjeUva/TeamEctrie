@@ -19,12 +19,12 @@ class HillClimber:
         self.scorelist: List[int] = []
 
     def run(self, iterations: int) -> None:
-        """ This method takes one argument iterations and performs the 
-            optimization process for the specified number of iterations. In 
-            each iteration, it generates a random trajectory using the 
-            generate_random_traject method, replaces the lowest-scoring 
+        """ This method takes one argument iterations and performs the
+            optimization process for the specified number of iterations. In
+            each iteration, it generates a random trajectory using the
+            generate_random_traject method, replaces the lowest-scoring
             trajectory in the current state with the newly generated one. """
-        
+
         for i in range(iterations):
             # Generate a new traject
             next_traject = self.generate_random_traject()
@@ -45,7 +45,8 @@ class HillClimber:
             self.scorelist.append(self.best_state.line.score(self.graph))
 
     def generate_random_traject(self) -> Traject:
-        """ This method generates a single random trajectory using the Randomise class. """
+        """ This method generates a single random trajectory using
+            the Randomise class. """
 
         # Generate a single random traject
         random_traject = Randomise(self.graph, self.timeframe, 1)
@@ -53,9 +54,9 @@ class HillClimber:
         return random_traject.line.trajects[0]
 
     def remove_lowest_scoring_traject(self) -> None:
-        """ This method removes the lowest-scoring trajectory from the current 
-            state. """
-        
+        """ This method removes the lowest-scoring trajectory from
+            the current state. """
+
         # Create an empty list
         score = []
 

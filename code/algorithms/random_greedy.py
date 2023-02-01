@@ -6,10 +6,10 @@ from code.classes.graph import Graph
 
 
 class Random_Greedy():
-    """ Random_Greedy greedily creates trajects and add it to the line"""
+    """ Random_Greedy greedily creates trajects and add it to the line. """
 
-    def __init__(self, graph: Graph, timeframe: int, max_traject: int) -> None: \
-    
+    def __init__(self, graph: Graph, timeframe: int, max_traject: int) -> None:
+
         self.graph = graph
         self.timeframe = timeframe
         self.max_trajects = max_traject
@@ -19,13 +19,14 @@ class Random_Greedy():
         self.line = Lines()
 
     def run(self) -> None:
-        """ Run method which runs the random greedy algorithm for finding the best
-        trajectory in the graph, given the time constraint of the traject. """
+        """ Run method which runs the random greedy algorithm for
+            finding the best trajectory in the graph, given the time
+            constraint of the traject. """
 
         # Create a new_graph by deepcopying self.graph
         new_graph = copy.deepcopy(self.graph)
 
-        # Loop is executed max_trajects times to find the best possible trajectory's
+        # Loop is executed max_trajects times to find the best trajectory
         for i in range(self.max_trajects):
 
             # Create empty traject
@@ -36,7 +37,7 @@ class Random_Greedy():
 
             # Select an unvisited starting (endpoint) station
             current_station = new_graph.not_visited_yet(endpoint_stations)
-            
+
             # If no unvisited stations left, randomly choose a starting station
             if current_station is False:
                 current_station = random.choice(
@@ -78,12 +79,12 @@ class Random_Greedy():
                     current_station = next_station
 
                 else:
-                    # Check if there is a highest potential connection 
+                    # Check if there is a highest potential connection
                     # (except tmp)
                     if station_object.get_highest_potential_connection(
                             new_graph, tmp
                             ) is not False:
-                        
+
                         # Get next station and distance
                         next_station, distance = \
                             station_object.get_highest_potential_connection(

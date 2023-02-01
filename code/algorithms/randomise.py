@@ -8,8 +8,8 @@ from typing import Dict, Any
 
 class Randomise():
     """ Randomise randomly creates trajects, in other words; it randomly
-    assigns a begin station, then it randomly chooces connections except 
-    from the last visited station. """
+        assigns a begin station, then it randomly chooces connections
+        except from the last visited station. """
 
     def __init__(self, graph: Graph, timeframe: int, max_traject: int) -> None:
 
@@ -18,11 +18,10 @@ class Randomise():
         self.max_trajects = max_traject
         self.line = Lines()
 
-    def copy_dict(self,
-                  dictionary: Dict[Any, Any],
+    def copy_dict(self, dictionary: Dict[Any, Any],
                   avoid_value: str) -> Dict[Any, Any]:
-        """ This method returns a dict of connections without the connection 
-        to be avoided (last visited station). """
+        """ This method returns a dict of connections without the
+            connection to be avoided (last visited station). """
 
         new_dict = {}
         dict_keys = dictionary.keys()
@@ -78,10 +77,10 @@ class Randomise():
                 connections = self.graph.connections[next_station]
                 connections = self.copy_dict(connections, tmp)
                 tmp = next_station
-                
-                # There have to be at least 1 connection for being a legit traject
+
+                # There has to be at least 1 connection to be a legit traject
                 if len(traject.stations) <= 1:
                     continue
-                    
+
             # Add traject to line
             self.line.add_traject(traject)
