@@ -49,6 +49,13 @@ if __name__ == "__main__":
         vis.save_output(str_name)
 
     bestrandom = runner(graph, Randomise, 180, 20, 1000, False)
+    bestrandom = runner(graph, Randomise, 180, 20, 2, False)
+    bestrandomgreedy = runner(graph, RandomGreedy, 180, 20, 2, False)
+    bestgreedy2 = runner(graph, Greedy2, 180, 20, 5000, False)
+    
+    hillclimb = HillClimber(graph, 180, bestgreedy2)
+    hillclimb.run(100)
+
     save_vis(graph, bestrandom.line.lines, "best_random")
 
     bestrandomgreedy = runner(graph, RandomGreedy, 180, 20, 1000, False)
@@ -56,12 +63,33 @@ if __name__ == "__main__":
 
     bestgreedy2 = runner(graph, Greedy2, 180, 20, 5000, False)
     save_vis(graph, bestgreedy2.line.lines, "best_greedy2")
+    save_vis(graph, hillclimb.best_state.line.lines, "best_hillclimber")
 
     hillclimb = HillClimber(graph, 180, bestgreedy2)
     hillclimb.run(5000)
     save_vis(graph, hillclimb.best_state.line.lines, "best_hillclimber")
 
-    with open('output.csv', 'w', newline='') as file:
+    with open('best_random_output.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["train", "stations"])
+        i = 1
+        for lin in bestrandom.line.lines:
+            formatted_lin = ", ".join([str(item).replace("'", "") for item in lin])
+            writer.writerow([f"train_{i}", f"[{formatted_lin}]"])
+            i += 1
+        writer.writerow([f"score", f"{bestrandom.line.score(graph)}"])
+
+    with open('best_greedy_output.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["train", "stations"])
+        i = 1
+        for lin in bestrandomgreedy.line.lines:
+            formatted_lin = ", ".join([str(item).replace("'", "") for item in lin])
+            writer.writerow([f"train_{i}", f"[{formatted_lin}]"])
+            i += 1
+        writer.writerow([f"score", f"{bestrandomgreedy.line.score(graph)}"])
+
+    with open('best_greedy2_output.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["train", "stations"])
         i = 1
@@ -70,3 +98,13 @@ if __name__ == "__main__":
             writer.writerow([f"train_{i}", f"[{lin2}]"])
             i += 1
         writer.writerow(["score", f"{hillclimb.best_state.line.score(graph)}"])
+
+    with open('hillclimber_output.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["train", "stations"])
+        i = 1
+        for lin in hillclimb.best_state.line.lines:
+            formatted_lin = ", ".join([str(item).replace("'", "") for item in lin])
+            writer.writerow([f"train_{i}", f"[{formatted_lin}]"])
+            i += 1
+        writer.writerow([f"score", f"{hillclimb.best_state.line.score(graph)}"])
