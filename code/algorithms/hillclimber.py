@@ -2,7 +2,7 @@ import copy
 from code.algorithms.randomise import Randomise
 from code.classes.graph import Graph
 from code.classes.traject import Traject
-from typing import Any
+from typing import Any, List
 
 
 class HillClimber:
@@ -17,6 +17,7 @@ class HillClimber:
         self.timeframe = timeframe
         self.current_state = current_state
         self.best_state = current_state
+        self.scorelist: List[int] = []
 
     def run(self, iterations: int) -> None:
 
@@ -31,6 +32,7 @@ class HillClimber:
                 self.best_state = current_state_copy
             else:
                 self.current_state = current_state_copy
+            self.scorelist.append(self.best_state.line.score(self.graph))
 
     def generate_random_traject(self) -> Traject:
 

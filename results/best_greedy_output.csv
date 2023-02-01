@@ -7,7 +7,6 @@ train_5,"[Helmond, Eindhoven, Weert, Roermond, Sittard]"
 train_6,"[Roosendaal, Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal]"
 train_7,"[Alkmaar, Castricum, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Centraal, Delft, Den Haag HS, Leiden Centraal, Alphen a/d Rijn, Gouda, Den Haag Centraal]"
 train_8,"[Groningen, Leeuwarden, Heerenveen, Steenwijk, Zwolle, Deventer, Zutphen]"
-train_9,"[Amsterdam Amstel, Hilversum, Utrecht Centraal, s-Hertogenbosch, Eindhoven, Tilburg, Breda, Dordrecht, Rotterdam Blaak]"
-train_10,"[Zwolle, Amersfoort, Utrecht Centraal, Alphen a/d Rijn, Gouda, Den Haag HS]"
-train_11,"[Gouda, Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Beverwijk, Zaandam, Hoorn]"
-score,5844.3258426966295
+train_9,"[Dordrecht, Breda, Tilburg, Eindhoven, s-Hertogenbosch, Utrecht Centraal, Alphen a/d Rijn, Gouda, Den Haag HS]"
+train_10,"[Zaandam, Beverwijk, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Hilversum, Utrecht Centraal, Schiphol Airport]"
+score,5860.606741573034
