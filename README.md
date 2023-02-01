@@ -2,7 +2,7 @@
 
 ## Beschrijving
 
-Het vinden van een efficiënte spoorlijnindeling is cruciaal voor het treinverkeer in Nederland. Het is een complexe uitdaging die opgelost kan worden met behulp van AI-technologieën. Een spoorlijnindeling bestaat uit verschillende trajecten waarlangs treinen zich gedurende de dag verplaatsen. Een traject is dus een route tussen sporen en stations. Dit project richt zich op het vinden van de optimale spoorlijnindeling van de 61 belangrijkste intercitystations van Nederland. Elke treinstation is ten minste verbonden met één spoorverbinding naar een ander treinstation. Een optimale lijnindeling betekent dat zoveel mogelijk spoorverbindingen in de minste tijd en met de minste trajecten worden gebruikt. De kwaliteit van de spoorlijnindeling wordt uitgedrukt in de volgende doelfunctie.
+Het vinden van een efficiënte spoorlijnindeling is cruciaal voor het treinverkeer in Nederland. Het is een complexe uitdaging die opgelost kan worden met behulp van AI-technologieën. Een spoorlijnindeling bestaat uit verschillende trajecten waarlangs treinen zich gedurende de dag verplaatsen. Een traject is dus een route tussen sporen en stations. Dit project richt zich op het vinden van de optimale spoorlijnindeling van de 61 belangrijkste intercitystations van Nederland. Elke treinstation is ten minste verbonden met één ander treinstation via een spoorverbinding. Een optimale lijnindeling bereikt zoveel mogelijk spoorverbindingen in de minste tijd en met zo min mogelijk trajecten. De kwaliteit van de spoorlijnindeling wordt uitgedrukt in de volgende doelfunctie.
 
 $$
 \begin{aligned}
@@ -41,11 +41,6 @@ Voor dit probleem gelden de volgende restricties.
 ## Hillclimber
 
 Het Hill Climber-algoritme begint met de best mogelijke spoorlijnindeling die is gemaakt door het Greedy-algoritme. In elke iteratie wordt het traject met de laagste score uit de huidige lijnvoering verwijderd. Daarna wordt er één traject uit het Random Greedy-algoritme toegevoegd. Als de score van de nieuwe lijnvoering hoger is dan die van de oude, dan wordt dit de nieuwe beste oplossing. Dit proces wordt herhaald tot er een optimale oplossing is gevonden.
-
-
-## Resultaten
-
-
 
 ## Aan de slag
 
