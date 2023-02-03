@@ -44,7 +44,7 @@ Greedy begint elk traject bij voorkeur met een onbezochte eindpuntstation. Een e
 
 ## Hillclimber
 
-Het Hillclimber-algoritme begint met de best mogelijke spoorlijnindeling die is gemaakt door het Greedy-algoritme. In elke iteratie wordt het traject met de laagste score uit de huidige lijnvoering verwijderd. Daarna wordt er één traject uit het Random Greedy-algoritme toegevoegd. Als de score van de nieuwe lijnvoering hoger is dan die van de oude, dan wordt dit de nieuwe beste oplossing. Dit proces wordt herhaald tot er een optimale oplossing is gevonden.
+Het Hillclimber-algoritme begint met de best mogelijke spoorlijnindeling die is gemaakt door het Greedy-algoritme. In elke iteratie wordt het traject met de laagste score uit de huidige lijnvoering verwijderd. Daarna wordt er één traject uit het Random algoritme toegevoegd. Als de score van de nieuwe lijnvoering hoger is dan die van de oude, dan wordt dit de nieuwe beste oplossing. Dit proces wordt herhaald tot er een optimale oplossing is gevonden.
 
 ## Aan de slag
 
